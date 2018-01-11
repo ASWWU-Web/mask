@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import { Routes, RouterModule }  from '@angular/router';
 
 
 import { RequestService } from './RequestService/requests';
@@ -13,7 +14,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
   	HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([])
   ],
   providers: [
   	RequestService
