@@ -1,0 +1,23 @@
+.circle {
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.circle img {
+  width:100%;
+}
+a {
+  /* TODO: Change to white when background is addded */
+  color: grey;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px black;
+}
+
+#full-name {
+  margin-bottom: 40px;
+}

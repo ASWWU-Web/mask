@@ -1,0 +1,11 @@
+.possiblePhoto > img{
+    max-width: 100px;
+}
+
+#preview {
+    border-left: solid 2px black;
+}
+
+.col-md-6 {
+    padding: 25px;
+}

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-dark bg-inverse navbar-toggleable-md">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul id="nav-links" class="nav navbar-nav text-xs-center mr-auto">
+      <li class="nav-item">
+        <a class="smooth text-uppercase" [routerLink]="['/']"> ASWWU</a>
+      </li>
+      <li >
+        <a class="smooth text-uppercase" [routerLink]="['/']">Mask</a>
+      </li>
+      <li class='hidden-xs-down'>
+        <a class="smooth text-uppercase" href="#">upcoming</a>
+      </li>
+      <li class="hidden-xs-down">
+        <a class="smooth text-uppercase" href="https://aswwu.com/atlas">Atlas</a>
+      </li>
+      <li class="hidden-sm-down">
+        <a class="text-uppercase" href="#">Things to do </a>
+      </li>
+      <li class="hidden-sm-down">
+        <a class="smooth text-uppercase" href="#">Gear</a>
+      </li>
+      <li class="dropdown">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary text-uppercase" id="dropdownMenu1" ngbDropdownToggle>More</button>
+          <div class="dropdown-menu bg-inverse" aria-labelledby="dropdownMenu1">
+            <a class="dropdown-item smooth text-uppercase hidden-sm-up" href="#">upcoming</a>
+            <a class="dropdown-item smooth text-uppercase hidden-sm-up" href="https://aswwu.com/atlas">Atlas</a>
+            <a class="dropdown-item smooth text-uppercase hidden-md-up" href="#">Things to do </a>
+            <a class="dropdown-item smooth text-uppercase hidden-md-up" href="#">Gear</a>
+            <a class="dropdown-item text-uppercase smooth" href="#">Global Service</a>
+            <a class="dropdown-item text-uppercase smooth" href="#">SM/AC map</a>
+            <a class="dropdown-item text-uppercase" href="https://aswwu.com/uploads/ASWWU/ASWWU-Application-2016-2017.docx">Work for ASWWU</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <user-bubble></user-bubble>
+</nav>

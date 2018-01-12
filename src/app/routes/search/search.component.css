@@ -1,0 +1,68 @@
+.container-fluid {
+    padding:0px;
+}
+
+#mask-search-query {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    border-radius: 0;
+    border-width: 3px;
+    border-color: white;
+    transition: color .2s, background-color .2s;
+    font-weight: bold;
+    background-color: transparent;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    max-width: 400px;
+}
+
+#mask-search-query:focus {
+    background-color: white;
+    color: grey;
+}
+
+#mask-search-query::-webkit-input-placeholder{
+    color: white;
+} /* add this for other browsers */
+
+.parallax-window {
+    height: 400px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* for mobile */
+#search-area {
+    height:90%;
+    padding-left:30px;
+    padding-right:30px;
+}
+#results {
+    text-align: center;
+}
+
+@media only screen and (min-aspect-ratio:3/4) and (min-height:700px) {
+    /* for desktop */
+    #search-area {
+        height: 50%;
+    }
+    #results{
+        /* visibility: hidden; */
+        display: none;
+    }
+
+}
+
+.text-giant {
+    font-size: 100px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
