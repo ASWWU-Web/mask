@@ -1,0 +1,45 @@
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #222;
+  z-index: -1;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-image: url(https://aswwu.com/media/background.php);
+  -webkit-transition: -webkit-filter 300ms;
+  -moz-transition: -moz-filter 300ms;
+  -o-transition: -o-filter 300ms;
+  transition: -webkit-filter 500ms, filter 500ms;
+}
+
+#background.fade4 {
+  -webkit-filter: saturate(0%) brightness(100%);
+  -moz-filter: saturate(0%) brightness(100%);
+  -o-filter: saturate(0%) brightness(100%);
+  filter: saturate(0%) brightness(100%);
+}
+
+#background.fade3 {
+  -webkit-filter: saturate(0%) brightness(70%);
+  -moz-filter: saturate(0%) brightness(70%);
+  -o-filter: saturate(0%) brightness(70%);
+  filter: saturate(0%) brightness(70%);
+}
+
+#background.fade2 {
+  -webkit-filter: saturate(0%) brightness(40%);
+  -moz-filter: saturate(0%) brightness(40%);
+  -o-filter: saturate(0%) brightness(40%);
+  filter: saturate(0%) brightness(40%);
+}
+
+#background.fade1 {
+  -webkit-filter: saturate(0%) brightness(10%);
+  -moz-filter: saturate(0%) brightness(10%);
+  -o-filter: saturate(0%) brightness(10%);
+  filter: saturate(0%) brightness(10%);
+}
