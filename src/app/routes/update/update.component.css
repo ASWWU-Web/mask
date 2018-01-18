@@ -1,9 +1,35 @@
-.possiblePhoto > img{
+.possiblePhoto > img {
     max-width: 100px;
 }
 
+/* small screen */
+#edit-profile {
+  margin: auto;
+}
 #preview {
-    border-left: solid 2px black;
+  display: none;
+}
+
+/* large screen */
+@media only screen and (min-aspect-ratio:3/5) {
+  #edit-profile {
+    min-width: auto;
+    min-width: 700px;
+  }
+  #preview {
+      display: none;
+  }
+}
+
+/* large screen */
+@media only screen and (min-aspect-ratio:3/2) {
+  #edit-profile {
+    min-width: inherit;
+  }
+  #preview {
+      border-left: solid 2px black;
+      display: inline;
+  }
 }
 
 .col-md-6 {
