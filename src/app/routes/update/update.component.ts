@@ -28,6 +28,7 @@ export class UpdateComponent implements OnInit {
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
   possiblePhotos: string[];
+  searchYears: string[];
   justClicked: string;
 
   /*
