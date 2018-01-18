@@ -1,15 +1,15 @@
+.col-md-6 {
+  padding: 25px;
+}
 .possible-photo-container {
   margin: 10px;
 }
 .possible-photo>img {
   max-width: 100px;
-  padding: 3px;
-}
-.col-md-6 {
-  padding: 25px;
+  margin: 8px;
 }
 .selected-photo {
-  border: solid 2px #89f442;
+  box-shadow: 0 0 0 3px white;
 }
 
 /* small screen */

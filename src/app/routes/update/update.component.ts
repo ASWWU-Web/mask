@@ -28,6 +28,7 @@ export class UpdateComponent implements OnInit {
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
   possiblePhotos: string[];
+  justClicked: string;
 
   /*
   * On initialization of this component, call the verify function to ensure that the user is logged in.
@@ -50,7 +51,9 @@ export class UpdateComponent implements OnInit {
     this.possiblePhotos = [DEFAULT_PHOTO];
     this.searchYears = ARCHIVE_YEARS.slice(0, SEARCH_YEARS);
     this.searchYears.unshift(CURRENT_YEAR);
-    for(let YEAR of this.searchYears) {
+    this.justClicked = this.profile.photo;
+    // display profile photo options
+    for (let YEAR of this.searchYears) {
       this.requestService.get(MEDIA_URI + "/listProfilePhotos.php?wwuid=" + this.fullProfile.wwuid + "&year=" + YEAR, (photos) => {
         this.possiblePhotos = this.possiblePhotos.concat(photos)
       }, undefined);
@@ -68,13 +71,6 @@ export class UpdateComponent implements OnInit {
     let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
     photo = photo.replace("//", "/");
     return photo;
-  }
-
-  isProfilePhoto(url: string): bool {
-    if(this.getPhotoLink(url).indexOf(this.profile.photo) >= 0) {
-      return true;
-    }
-    return false;
   }
 
   // Takes url-safe strings and converts them into valid ASCII so that Javascript can handle them properly.

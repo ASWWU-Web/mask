@@ -1,18 +1,21 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
+  <div>
+    <span ng-repeat="item in collection" ng-class="{ 'selected-class-name': $index == selectedIndex }" ng-click="itemClicked($index)"> {{ item }} </span>
+  </div>
+
   <div id="edit-profile" class="col-md-6">
     <h1 class="text-white">Profile Info</h1>
     <hr>
     <div class="row possible-photo-container">
       <br>
-      <div *ngFor="let url of possiblePhotos" class="possible-photo .col-sm-12" (click)="changePhoto(url)">
-        <img *ngIf="this.isProfilePhoto(url)" src="{{ this.getPhotoLink(url) }}" class="rounded selected-photo" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()">
-        <img *ngIf="!this.isProfilePhoto(url)" src="{{ this.getPhotoLink(url) }}" class="rounded" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()">
+      <div *ngFor="let url of possiblePhotos" class="possible-photo .col-sm-12" (click)="changePhoto(url); justClicked = url;">
+        <img src="{{ this.getPhotoLink(url) }}" class="rounded selected-photo" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()" [ngClass]="{'selected-photo': justClicked == url }">
       </div>
     </div>
 
     <div class="row">
       <div *ngFor="let field of fields;" class="col-md-6 pb-2 pt-2">
-        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitalize">{{field.split('_').join(' ')}}</div>
+        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">{{field.split('_').join(' ')}}</div>
         <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
         <div *ngIf="searchables.hasOwnProperty(field)">
           <input [attr.list]="field" [(ngModel)]="fullProfile[field]">
