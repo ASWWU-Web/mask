@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
 import { FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating } from '../../shared/fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO } from '../../config';
+import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../config';
 
 @Component({
   selector: 'update-profile',
@@ -37,7 +37,7 @@ export class UpdateComponent implements OnInit {
   ngOnInit() {
     this.requestService.verify((data) => {
       this.profile = data;
-      this.requestService.get("/profile/1617/" + this.profile.username, (data) => {
+      this.requestService.get("/profile/" + CURRENT_YEAR + "/" + this.profile.username, (data) => {
         this.fullProfile = this.Decode(data);
         this.getPhotos();
       }, undefined);
@@ -46,11 +46,15 @@ export class UpdateComponent implements OnInit {
 
   // This function gets the url's of all the possible photos for a user from the endpoint on the server.
   getPhotos(): any {
-    this.requestService.get(MEDIA_URI + "/listProfilePhotos.php?wwuid=" + this.fullProfile.wwuid + "&year=" + CURRENT_YEAR, (photos) => {
-      this.possiblePhotos = photos;
-      this.possiblePhotos.push(DEFAULT_PHOTO);
-      //TODO: Fix how we get photos so we get all, not just this year's.
-    }, undefined);
+    var SEARCH_YEARS = 3;  // SEARCH_YEARS is the number of years to get profile photo options from.
+    this.possiblePhotos = [DEFAULT_PHOTO];
+    this.searchYears = ARCHIVE_YEARS.slice(0, SEARCH_YEARS);
+    this.searchYears.unshift(CURRENT_YEAR);
+    for(let YEAR of this.searchYears) {
+      this.requestService.get(MEDIA_URI + "/listProfilePhotos.php?wwuid=" + this.fullProfile.wwuid + "&year=" + YEAR, (photos) => {
+        this.possiblePhotos = this.possiblePhotos.concat(photos)
+      }, undefined);
+    }
   }
 
   // Function to change which picture is set for a user. For use in the html to select a picture.
@@ -58,7 +62,7 @@ export class UpdateComponent implements OnInit {
     this.fullProfile.photo = url;
   }
 
-  //Get the link for a given photo
+  // Get the link for a given photo
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.fullProfile.photo || DEFAULT_PHOTO;
     let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
