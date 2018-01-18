@@ -1,5 +1,8 @@
-.possiblePhoto > img {
-    max-width: 100px;
+.possiblePhoto>img {
+  max-width: 100px;
+}
+.col-md-6 {
+  padding: 25px;
 }
 
 /* small screen */
@@ -10,14 +13,11 @@
   display: none;
 }
 
-/* large screen */
+/* mid screen */
 @media only screen and (min-aspect-ratio:3/5) {
   #edit-profile {
     min-width: auto;
     min-width: 700px;
-  }
-  #preview {
-      display: none;
   }
 }
 
@@ -25,13 +25,10 @@
 @media only screen and (min-aspect-ratio:3/2) {
   #edit-profile {
     min-width: inherit;
+    max-width: 1000px;
   }
   #preview {
-      border-left: solid 2px black;
-      display: inline;
+    border-left: solid 2px black;
+    display: inline;
   }
-}
-
-.col-md-6 {
-    padding: 25px;
 }
