@@ -70,6 +70,13 @@ export class UpdateComponent implements OnInit {
     return photo;
   }
 
+  isProfilePhoto(url: string): bool {
+    if(this.getPhotoLink(url).indexOf(this.profile.photo) >= 0) {
+      return true;
+    }
+    return false;
+  }
+
   // Takes url-safe strings and converts them into valid ASCII so that Javascript can handle them properly.
   // e.g. it takes a string like "peanut butter &amp; jelly" and turns it into "peanut butter & jelly"
   Decode(data: any): any {
