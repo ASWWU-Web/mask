@@ -1,17 +1,16 @@
 //This is here just for testing. It should eventually be put in a separate git repo
 //or be bundled with a base ASWWU project.
-import {NgModule} from '@angular/core';
-import { Injectable } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 // import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { SERVER_URL, COOKIE_DOMAIN } from '../config';
-import {User} from "./user.model";
-import {Subscription} from "rxjs/Subscription";
+import { User } from "./user.model";
+import { Subscription } from "rxjs/Subscription";
 
 @Injectable()
 export class RequestService {
@@ -19,7 +18,7 @@ export class RequestService {
   private isLoggedIn: boolean = false;
 
   private setCurrentUser(user: any): void {
-    if(user.hasOwnProperty("wwuid") && user.wwuid) {
+    if (user.hasOwnProperty("wwuid") && user.wwuid) {
       this.authUser = new User(user);
       this.isLoggedIn = true;
     } else {
@@ -34,16 +33,16 @@ export class RequestService {
   * Also returns the user object to the callback function.
   */
   verify(cb?: any): void {
-    if(document.cookie.search("token=") !== -1)  {
+    if (document.cookie.search("token=") !== -1) {
       this.verifyGet("verify", data => {
         //Log in the user
         let user = data.user || null;
         this.setCurrentUser(user);
-        if(typeof cb == "function") cb(user);
+        if (typeof cb == "function") cb(user);
       }, err => {
-          //user in not logged in remove authUser.
-          this.setCurrentUser({});
-          if(typeof cb == "function") cb(null);
+        //user in not logged in remove authUser.
+        this.setCurrentUser({});
+        if (typeof cb == "function") cb(null);
       });
     } else {
       this.authUser = undefined;
@@ -55,7 +54,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
 
-  private createRequest(uri: string): any {
+  private createRequest(uri: string, contentType: string = "application/json"): any {
     let url = uri;
     if (!url.startsWith("http")) {
       url = SERVER_URL;
@@ -63,10 +62,9 @@ export class RequestService {
       url += uri;
     }
 
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    let options = new RequestOptions({ headers: headers });
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', contentType),
+    };
 
     return { url: url, options: options };
   }
@@ -77,12 +75,11 @@ export class RequestService {
   * */
   private verifyGet(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
-    this.http.get(req.url,req.options)
-        // .map(res => res.json())
-        .subscribe(
-            data => afterRequest(data),
-            err => (catchError ? catchError(err) : console.error(err))
-        );
+    this.http.get(req.url, req.options)
+      .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
   }
 
   /*
@@ -92,20 +89,47 @@ export class RequestService {
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
     this.verify();
-    this.http.get(req.url,req.options)
+    this.http.get(req.url, req.options)
       // .map(res => res.json())
       .subscribe(
-        data => afterRequest(data),
-        err => (catchError ? catchError(err) : console.error(err))
+      data => afterRequest(data),
+      err => (catchError ? catchError(err) : console.error(err))
       );
   }
+
   post(uri: string, data: any, afterRequest, catchError): void {
     let body = JSON.stringify(data);
     this.verify();
     let req = this.createRequest(uri);
     this.http.post(req.url, body, req.options)
-      // .map(res => res.json())
       .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
+  }
+
+  private objToHttpParams(obj): HttpParams {
+    let params: HttpParams = new HttpParams();
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // params = params.set(key, obj[key]);
+        //This code technically works but Angular says that .set() takes
+        //Two strings only.
+        if (typeof obj[key] == "string") {
+          params = params.set(key, obj[key]);
+        } else {
+          params = params.set(key, JSON.stringify(obj[key]));
+        }
+      }
+    }
+    return params;
+  }
+
+  postxwww(uri: string, data: any, afterRequest, catchError): void {
+    let body = this.objToHttpParams(data);
+    this.verify();
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    this.http.post(req.url, body.toString(), req.options).subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
       );
@@ -114,13 +138,12 @@ export class RequestService {
   getWithSub(uri: string, afterRequest, catchError): Subscription {
     let req = this.createRequest(uri);
     this.verify();
-    let subscription = this.http.get(req.url,req.options)
-    // .map(res => res.json())
-    .subscribe(
+    let subscription = this.http.get(req.url, req.options)
+      .subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
       );
-    return(subscription);
+    return (subscription);
   }
   /*
   * Function to view whether or not the user is logged in.
