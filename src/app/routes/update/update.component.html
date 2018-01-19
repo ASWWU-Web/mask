@@ -1,6 +1,7 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
   <div id="edit-profile" class="col-md-6">
     <h1 class="text-white">Profile Info</h1>
+    <hr class="top-hr">
 
     <!-- Profile photo options -->
     <div class="row possible-photo-container">
@@ -25,7 +26,7 @@
               <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
             </datalist>
           </div>
-          <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
+          <select *ngIf="selectables.hasOwnProperty(field)" class="form-control" [(ngModel)]="fullProfile[field]">
             <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
           </select>
         </div>
@@ -41,6 +42,7 @@
   <!-- Profile preview -->
   <div class="col-md-6" id="preview">
     <h1 class="text-white">Profile Preview</h1>
+    <hr class="top-hr">
     <profile-full [profile]="fullProfile"></profile-full>
   </div>
 </div>
