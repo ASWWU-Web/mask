@@ -2,6 +2,8 @@
   <div id="edit-profile" class="col-md-6">
     <h1 class="text-white">Profile Info</h1>
     <hr>
+
+    <!-- Profile photo options -->
     <div class="row possible-photo-container">
       <br>
       <div *ngFor="let url of possiblePhotos" class="possible-photo .col-sm-12" (click)="changePhoto(url); justClicked = url;">
@@ -9,28 +11,33 @@
       </div>
     </div>
 
-    <div class="row">
-      <div *ngFor="let field of fields;" class="col-md-6 pb-2 pt-2">
-        <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">{{field.split('_').join(' ')}}</div>
-        <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
-        <div *ngIf="searchables.hasOwnProperty(field)">
-          <input [attr.list]="field" [(ngModel)]="fullProfile[field]">
-          <datalist id="{{field}}">
-            <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
-          </datalist>
+    <!-- Input fields -->
+    <div *ngFor="let section of sections;">
+      <hr>
+      <div class="row">
+        <div *ngFor="let field of section;" class="col-md-6 pb-2 pt-2">
+          <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">{{field.split('_').join(' ')}}</div>
+          <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
+          <div *ngIf="searchables.hasOwnProperty(field)">
+            <input [attr.list]="field" [(ngModel)]="fullProfile[field]">
+            <datalist id="{{field}}">
+              <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
+            </datalist>
+          </div>
+          <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
+            <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
+          </select>
         </div>
-
-        <select *ngIf="selectables.hasOwnProperty(field)" [(ngModel)]="fullProfile[field]">
-          <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
-        </select>
       </div>
     </div>
 
-    <div>
-      <h2><button class="btn btn-primary" id="Submit" (click)="UploadProfile()">Update Profile</button></h2>
+    <!-- Submit button -->
+    <div id="submit">
+      <button class="btn btn-primary" (click)="UploadProfile()">Update Profile</button>
     </div>
   </div>
 
+  <!-- Profile preview -->
   <div class="col-md-6" id="preview">
     <h1 class="text-white">Profile Preview</h1>
     <hr>
@@ -38,6 +45,7 @@
   </div>
 </div>
 
+<!-- Not logged in prompt -->
 <div *ngIf="!requestService.isLoggedOn()">
   <h1>Hmm... You aren't logged in.</h1>
   <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/mask/update">Log in</a>

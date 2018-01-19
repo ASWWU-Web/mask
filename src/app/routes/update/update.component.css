@@ -1,3 +1,13 @@
+hr {
+  border-color: white;
+  margin-top: 1.75em;
+}
+
+#submit {
+  margin-left:13px;
+  margin-bottom: 6px;
+}
+
 .col-md-6 {
   padding: 25px;
 }
@@ -9,7 +19,7 @@
   margin: 8px;
 }
 .selected-photo {
-  box-shadow: 0 0 0 3px white;
+  box-shadow: 0 0 0 1px white;
 }
 
 /* small screen */
@@ -35,7 +45,7 @@
     max-width: 1000px;
   }
   #preview {
-    border-left: solid 2px black;
+    border-left: solid 1px black;
     display: inline;
   }
 }

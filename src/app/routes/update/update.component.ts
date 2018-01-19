@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
-import { FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating } from '../../shared/fields';
+import { FieldSections, FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating } from '../../shared/fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../config';
 
 @Component({
@@ -26,7 +26,7 @@ export class UpdateComponent implements OnInit {
 
   profile: ProfileModel = new ProfileModel("{}");
   fullProfile: ProfileModel = new ProfileModel("{}");
-  fields: string[] = FieldsForUpdating;
+  sections: string[][] = FieldSections;
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
   possiblePhotos: string[];
