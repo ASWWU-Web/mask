@@ -2,6 +2,6 @@
 
 #aswwuFooter {
     border-radius:0; 
-    position:absolute; 
+    position:fixed; 
     bottom:0px; width:100%
 }

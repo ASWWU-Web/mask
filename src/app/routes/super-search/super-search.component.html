@@ -7,28 +7,23 @@
             </div>
             <br>
             <div class="align-items-center">
-                <div class="text-center">
-                    <span class="fieldSelector year-selector" id="field0">Year</span>
-                    <select id='entry0' [(ngModel)]="year">
-                        <option value="1718" selected="selected">2017-2018</option>
-                        <option value="1617">2016-2017</option>
-                        <option value="1516">2015-2016</option>
-                        <option value="1415">2014-2015</option>
-                        <option value="1314">2013-2014</option>
-                        <option value="1213">2012-2013</option>
-                    </select>
-                </div>
                 <br>
                 <div class="form-group row" *ngFor="let pair of criteria; let i = index;" id="search">
-                    <select class="form-control col-sm-3" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
-                        <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
-                    </select>
+                    <!-- FIELDS SELECTOR -->
+                    <div class="dropdown-container col col-md-3" style="border-right-style:none;">
+                        <select class="form-control dropdown" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
+                            <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
+                        </select>
+                    </div>
 
-                    <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control col-sm-7" type="text" placeholder="super search box...">
+                    <!-- SEARCH BOX -->
+                    <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control mask-search-query super-search-box col" type="text" placeholder="super search box...">
 
-                    <select class="form-control col-sm-7" *ngIf="selectables.hasOwnProperty(criteria[i][0])" [(ngModel)]="criteria[i][1]">
-                        <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
-                    </select>
+                    <div class="dropdown-container col" *ngIf="selectables.hasOwnProperty(criteria[i][0])">
+                        <select class="dropdown col" [(ngModel)]="criteria[i][1]">
+                            <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
+                        </select>
+                    </div>
 
                     <span *ngIf="searchables.hasOwnProperty(criteria[i][0])">
                         <input  [attr.list]="criteria[i][0]" [(ngModel)]="criteria[i][1]">
@@ -38,8 +33,21 @@
                     </span>
                     <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
 
-                    <button class="form-control btn btn-secondary col-sm" (click)="removeField(i)">Remove</button>
+                    <!-- REMOVE BUTTON -->
+                    <button class="btn super-search-box mask-search-query remove-button" (click)="removeField(i)"><span class="fas fa-times"></span></button>
                 </div>
+                <!-- YEAR SELECTOR -->
+                <div class="text-center">
+                        <span class="fieldSelector year-selector" id="field0">Year :</span>
+                        <select class="dropdown" id='entry0' [(ngModel)]="year">
+                            <option value="1718" selected="selected">2017-2018</option>
+                            <option value="1617">2016-2017</option>
+                            <option value="1516">2015-2016</option>
+                            <option value="1415">2014-2015</option>
+                            <option value="1314">2013-2014</option>
+                            <option value="1213">2012-2013</option>
+                        </select>
+                    </div>
                 <button class="btn btn-primary search-button" (click)="criteria.push(['', ''])">Add search field</button>
                 <button class="btn btn-primary search-button" (click)="updateQuery()">Search!</button>
             </div>
