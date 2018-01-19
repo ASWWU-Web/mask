@@ -3,7 +3,7 @@
 import {NgModule} from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {HttpClientModule, HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
 // import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
@@ -125,13 +125,31 @@ export class RequestService {
     return params;
   }
 
+  private objToHttpParams(obj): HttpParams {
+    let params: HttpParams = new HttpParams();
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)){
+          if(typeof obj[key] == "string"){
+            params = params.set(key, obj[key]);
+            //params.append(key, obj[key].replace(/;/g, ","));
+          }else {
+            // params.append(key, JSON.stringify(obj[key]).replace(/;/g, ","));
+            params = params.set(key, JSON.stringify(obj[key]));
+          }
+        }
+    }
+    return params;
+  }
+
   postxwww(uri: string, data: any, afterRequest, catchError): void {
     //let body = JSON.stringify(data);
-    let body = this.objToSearchParams(data);
+    let body = this.objToHttpParams(data);
     this.verify();
     let req = this.createRequest(uri, "application/x-www-form-urlencoded");
     console.log(req);
-    this.http.post(req.url, body.toString(), req.options)
+    this.http.post(req.url, body.toString(), {
+       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+    })
       .subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
