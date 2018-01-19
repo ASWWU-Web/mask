@@ -1,3 +1,11 @@
+hr {
+  margin-top: 2.75em;
+  margin-bottom: 2.25em;
+  max-width: 100px;
+  border-width: 5px;
+  border-color: #dddddd;
+}
+
 .col-md-6 {
   padding: 25px;
 }
@@ -9,9 +17,23 @@
   margin: 8px;
 }
 .selected-photo {
-  box-shadow: 0 0 0 3px white;
+  box-shadow: 0 0 0 3px #dddddd;
+}
+.field-title {
+  color: #dddddd;
+}
+.top-hr {
+  border-color: transparent;
+  margin: 15px;
 }
 
+#submit {
+  margin-left:13px;
+  margin-bottom: 6px;
+}
+#left-header-title {
+  margin-left: 10px;
+}
 /* small screen */
 #edit-profile {
   margin: auto;
@@ -19,7 +41,6 @@
 #preview {
   display: none;
 }
-
 /* mid screen */
 @media only screen and (min-aspect-ratio:3/5) {
   #edit-profile {
@@ -27,7 +48,6 @@
     min-width: 700px;
   }
 }
-
 /* large screen */
 @media only screen and (min-aspect-ratio:3/2) {
   #edit-profile {
@@ -35,7 +55,7 @@
     max-width: 1000px;
   }
   #preview {
-    border-left: solid 2px black;
+    border-left: solid 1px black;
     display: inline;
   }
 }
