@@ -2,6 +2,8 @@
  * Created by ethan on 2/7/17.
  */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
 import { FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating } from '../../shared/fields';
@@ -20,7 +22,7 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../con
  * This is the component that handles a user updating their profile.
  * */
 export class UpdateComponent implements OnInit {
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private router: Router) { }
 
   profile: ProfileModel = new ProfileModel("{}");
   fullProfile: ProfileModel = new ProfileModel("{}");
@@ -100,8 +102,7 @@ export class UpdateComponent implements OnInit {
       "/update/" + this.fullProfile.username,
       this.fullProfile,
       (data) => {
-        console.log("sent");
-        // window.location.href = 'https://aswwu.com/mask/profile/' + this.requestService.authUser.username;
+        this.router.navigate(['/profile',{username: this.fullProfile.username}]);
       },
       undefined);
   }
