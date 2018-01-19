@@ -1,7 +1,6 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
   <div id="edit-profile" class="col-md-6">
     <h1 class="text-white">Profile Info</h1>
-    <hr>
 
     <!-- Profile photo options -->
     <div class="row possible-photo-container">
@@ -16,10 +15,12 @@
       <hr>
       <div class="row">
         <div *ngFor="let field of section;" class="col-md-6 pb-2 pt-2">
-          <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">{{field.split('_').join(' ')}}</div>
+          <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">
+            <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
+          </div>
           <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
           <div *ngIf="searchables.hasOwnProperty(field)">
-            <input [attr.list]="field" [(ngModel)]="fullProfile[field]">
+            <input [attr.list]="field" class="form-control" [(ngModel)]="fullProfile[field]">
             <datalist id="{{field}}">
               <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
             </datalist>
@@ -40,7 +41,6 @@
   <!-- Profile preview -->
   <div class="col-md-6" id="preview">
     <h1 class="text-white">Profile Preview</h1>
-    <hr>
     <profile-full [profile]="fullProfile"></profile-full>
   </div>
 </div>
