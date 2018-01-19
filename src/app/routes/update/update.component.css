@@ -1,11 +1,41 @@
-.possiblePhoto > img{
-    max-width: 100px;
-}
-
-#preview {
-    border-left: solid 2px black;
-}
-
 .col-md-6 {
-    padding: 25px;
+  padding: 25px;
+}
+.possible-photo-container {
+  margin: 10px;
+}
+.possible-photo>img {
+  max-width: 100px;
+  margin: 8px;
+}
+.selected-photo {
+  box-shadow: 0 0 0 3px white;
+}
+
+/* small screen */
+#edit-profile {
+  margin: auto;
+}
+#preview {
+  display: none;
+}
+
+/* mid screen */
+@media only screen and (min-aspect-ratio:3/5) {
+  #edit-profile {
+    min-width: auto;
+    min-width: 700px;
+  }
+}
+
+/* large screen */
+@media only screen and (min-aspect-ratio:3/2) {
+  #edit-profile {
+    min-width: inherit;
+    max-width: 1000px;
+  }
+  #preview {
+    border-left: solid 2px black;
+    display: inline;
+  }
 }
