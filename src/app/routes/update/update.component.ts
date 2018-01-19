@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
-import { FieldSections, FieldsInOrder, SelectFields, SearchableFields, FieldsForUpdating } from '../../shared/fields';
+import { FieldSections, SelectFields, SearchableFields } from '../../shared/fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../config';
 
 @Component({

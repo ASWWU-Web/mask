@@ -31,6 +31,9 @@ hr {
   margin-left:13px;
   margin-bottom: 6px;
 }
+#left-header-title {
+  margin-left: 10px;
+}
 /* small screen */
 #edit-profile {
   margin: auto;
