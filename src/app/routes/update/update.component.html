@@ -1,8 +1,4 @@
 <div *ngIf="requestService.isLoggedOn()" class="row">
-  <div>
-    <span ng-repeat="item in collection" ng-class="{ 'selected-class-name': $index == selectedIndex }" ng-click="itemClicked($index)"> {{ item }} </span>
-  </div>
-
   <div id="edit-profile" class="col-md-6">
     <h1 class="text-white">Profile Info</h1>
     <hr>
