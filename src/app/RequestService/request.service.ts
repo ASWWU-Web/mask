@@ -55,7 +55,7 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
 
-  private createRequest(uri: string): any {
+  private createRequest(uri: string, contentType: string = "application/json"): any {
     let url = uri;
     if (!url.startsWith("http")) {
       url = SERVER_URL;
@@ -64,7 +64,7 @@ export class RequestService {
     }
 
     let headers = new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': contentType
     });
     let options = new RequestOptions({ headers: headers });
 
@@ -105,6 +105,33 @@ export class RequestService {
     let req = this.createRequest(uri);
     this.http.post(req.url, body, req.options)
       // .map(res => res.json())
+      .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
+  }
+
+  private objToSearchParams(obj): URLSearchParams{
+    let params: URLSearchParams = new URLSearchParams();
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)){
+          if(typeof obj[key] == "string"){
+            params.append(key, obj[key].replace(/;/g, ","));
+          }else {
+            params.append(key, JSON.stringify(obj[key]).replace(/;/g, ","));
+          }
+        }
+    }
+    return params;
+  }
+
+  postxwww(uri: string, data: any, afterRequest, catchError): void {
+    //let body = JSON.stringify(data);
+    let body = this.objToSearchParams(data);
+    this.verify();
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    console.log(req);
+    this.http.post(req.url, body.toString(), req.options)
       .subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))

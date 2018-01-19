@@ -88,7 +88,7 @@ export class UpdateComponent implements OnInit {
 
     // Lets a user upload their profile to the server.
     UploadProfile(): void {
-        this.requestService.post("/update/"+this.fullProfile.username, this.fullProfile, (data) => { window.location.href = 'https://aswwu.com/mask/profile/' + this.requestService.authUser.username; }, undefined);
+        this.requestService.postxwww("/update/"+this.fullProfile.username, this.fullProfile, (data) => { window.location.href = 'https://aswwu.com/mask/profile/' + this.requestService.authUser.username; }, undefined);
     }
 
 
