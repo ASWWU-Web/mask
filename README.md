@@ -14,9 +14,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Because the live version of the server is run at `aswwu.com/mask` you must build the project as follows.
 ```
-ng build -prod --base-href /mask
+ng build -prod --base-href /mask --deploy-url /mask
 ```
-
+You can also run `npm run build`.
 
 ## Further help
 
