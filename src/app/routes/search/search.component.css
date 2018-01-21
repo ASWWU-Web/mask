@@ -31,6 +31,8 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 /* for mobile */

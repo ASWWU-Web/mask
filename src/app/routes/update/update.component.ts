@@ -48,6 +48,12 @@ export class UpdateComponent implements OnInit {
     });
   }
 
+  // Because the `requestService` is private it cannot be accessed by the
+  // template. Hence the reason for this function. :(
+  isLoggedOn() {
+    return this.requestService.isLoggedOn();
+  }
+
   // This function gets the url's of all the possible photos for a user from the endpoint on the server.
   getPhotos(): any {
     var SEARCH_YEARS = 3;  // SEARCH_YEARS is the number of years to get profile photo options from.

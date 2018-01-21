@@ -1,4 +1,4 @@
-<div *ngIf="requestService.isLoggedOn()" class="row">
+<div *ngIf="isLoggedOn()" class="row">
   <div id="edit-profile" class="col-md-6">
     <h1 id="left-header-title" class="text-white">Profile Info</h1>
     <hr class="top-hr">
@@ -19,7 +19,7 @@
           <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">
             <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
           </div>
-          <input *ngIf="!searchables.hasOwnProperty(field)&&!selectables[field]&&!(field == 'department' || field == 'office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
+          <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && !(field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
           <div *ngIf="searchables.hasOwnProperty(field)">
             <input [attr.list]="field" class="form-control" [(ngModel)]="fullProfile[field]">
             <datalist id="{{field}}">
@@ -48,7 +48,7 @@
 </div>
 
 <!-- Not logged in prompt -->
-<div *ngIf="!requestService.isLoggedOn()">
+<div *ngIf="!isLoggedOn()">
   <h1 class="text-white">Hmm... You aren't logged in.</h1>
   <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/mask/update">Log in</a>
 </div>
