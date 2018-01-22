@@ -78,7 +78,6 @@ export class UpdateComponent implements OnInit {
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.fullProfile.photo || DEFAULT_PHOTO;
     let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
-    photo = photo.replace("//", "/");
     return photo;
   }
 

@@ -7,7 +7,7 @@
     <div class="row possible-photo-container">
       <br>
       <div *ngFor="let url of possiblePhotos" class="possible-photo .col-sm-12" (click)="changePhoto(url); justClicked = url;">
-        <img src="{{ this.getPhotoLink(url) }}" class="rounded selected-photo" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()" [ngClass]="{'selected-photo': justClicked == url }">
+        <img src="{{ getPhotoLink(url) }}" class="rounded selected-photo" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()" [ngClass]="{'selected-photo': justClicked == url }">
       </div>
     </div>
 
