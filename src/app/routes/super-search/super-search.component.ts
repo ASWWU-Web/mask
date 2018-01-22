@@ -32,7 +32,8 @@ export class SuperSearchComponent implements OnInit {
             (param: any) => {
                 this.query = param['query'];
             });
-    }
+        this.criteria.push(['full_name', '']);
+        }
 
     updateQuery() {
         let tempstring = '';
