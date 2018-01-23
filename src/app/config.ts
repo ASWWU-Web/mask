@@ -1,9 +1,3 @@
-//DOMAINS
-// export var SERVER_URL = "https://aswwu.com/server";
-// export var COOKIE_DOMAIN = ".aswwu.com";
-export const SERVER_URL = "http://127.0.0.1:8888";
-export const COOKIE_DOMAIN = ".localhost";
-
 //IMAGES
 export const MEDIA_URI = 'https://aswwu.com/media';
 export const MEDIA_XS = MEDIA_URI + "/img-xs";
