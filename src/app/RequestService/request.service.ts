@@ -110,16 +110,12 @@ export class RequestService {
 
   private objToHttpParams(obj): HttpParams {
     let params: HttpParams = new HttpParams();
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
+    for (var key of Object.keys(obj)) {
+      if (typeof obj[key] == "string") {
+        params = params.set(key, encodeURIComponent(obj[key]).replace(/%20/g, "+"));
         // params = params.set(key, obj[key]);
-        //This code technically works but Angular says that .set() takes
-        //Two strings only.
-        if (typeof obj[key] == "string") {
-          params = params.set(key, obj[key]);
-        } else {
-          params = params.set(key, JSON.stringify(obj[key]));
-        }
+      } else {
+        params = params.set(key, JSON.stringify(obj[key]));
       }
     }
     return params;
