@@ -12,9 +12,12 @@
     </div>
 
     <!-- Input fields -->
-    <div *ngFor="let section of sections;">
-      <hr>
-      <div class="row">
+    <div *ngFor="let section of sections; let i = index;">
+      <!-- Collapse button -->
+      <button type="button" class="btn btn-outline-primary" (click)="notCollapsed = section[0]" [attr.aria-expanded]="!(notCollapsed == section[0])" aria-controls="collapseExample">{{ sectionNames[i] }}</button>
+      <!-- Sections -->
+      <div id="collapseExample" class="row" [ngbCollapse]="!(notCollapsed == section[0])">
+        <!-- Fields -->
         <div *ngFor="let field of section;" class="col-md-6 pb-2 pt-2">
           <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">
             <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>

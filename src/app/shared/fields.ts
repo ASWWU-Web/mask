@@ -2,6 +2,14 @@
  * Created by ethan on 2/9/17.
  */
 // All fields that exist in a profile.
+export const FieldSectionNames: string[] = [
+    "General",
+    "Relationship",
+    "Education",
+    "Personality",
+    "Favorites",
+    "Departmental"
+];
 export const FieldSections: string[][] = [
     [ "full_name", "phone", "email", "website", "gender", "birthday", "class_standing", "privacy" ],
     [ "relationship_status", "attached_to" ],

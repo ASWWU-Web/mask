@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
-import { FieldSections, SelectFields, SearchableFields } from '../../shared/fields';
+import { FieldSectionNames, FieldSections, SelectFields, SearchableFields } from '../../shared/fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../config';
 
 @Component({
@@ -26,12 +26,14 @@ export class UpdateComponent implements OnInit {
 
   profile: ProfileModel = new ProfileModel("{}");
   fullProfile: ProfileModel = new ProfileModel("{}");
+  sectionNames: string[] = FieldSectionNames;
   sections: string[][] = FieldSections;
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
   possiblePhotos: string[];
   searchYears: string[];
   justClicked: string;
+  notCollapsed: string = "full_name";
 
   /*
   * On initialization of this component, call the verify function to ensure that the user is logged in.
