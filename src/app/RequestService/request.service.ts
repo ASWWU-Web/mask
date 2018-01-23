@@ -8,7 +8,7 @@ import { HttpClientModule, HttpClient, HttpParams, HttpHeaders } from '@angular/
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { SERVER_URL, COOKIE_DOMAIN } from '../config';
+import { environment } from "../../environments/environment";
 import { User } from "./user.model";
 import { Subscription } from "rxjs/Subscription";
 
@@ -57,7 +57,7 @@ export class RequestService {
   private createRequest(uri: string, contentType: string = "application/json"): any {
     let url = uri;
     if (!url.startsWith("http")) {
-      url = SERVER_URL;
+      url = environment.SERVER_URL;
       if (url.split('').pop() != '/' && uri[0] != '/') url += '/';
       url += uri;
     }
