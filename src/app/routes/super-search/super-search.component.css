@@ -30,7 +30,17 @@
 
 .mask-search-query::-webkit-input-placeholder{
     color: white;
-} /* add this for other browsers */
+}
+.form-control::placeholder-shown {
+    color: white;
+}
+.form-control::placeholder{
+    color:white;
+}
+.form-control::moz-placeholder{
+    color:white;
+}
+/* add this for other browsers */
 
 .remove-button {
     border-left-style: none;
@@ -130,6 +140,9 @@
     transition: color .2s, background-color .2s;
     font-weight: bold;
     padding-bottom: 12px;
+    border-radius: 0px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
 }
 
 .dropdown-container {
@@ -139,4 +152,5 @@
     border-color: white;
     border-width: 3px;
     border-radius: 0px;
+    color: white;
 }
