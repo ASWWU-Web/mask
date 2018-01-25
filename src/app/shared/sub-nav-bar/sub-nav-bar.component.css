@@ -2,18 +2,16 @@
 
 .navbar {
   border-radius: 0;
-  max-height: 32px;
+  height: 32px;
   background-color: #161616;
 }
 
-/*Nav*/
 #nav-links {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 300;
 }
-
 #nav-links li {
   display: inline-block;
   float: none;
@@ -31,19 +29,4 @@
 #nav-links li a:hover {
   color: grey;
   text-decoration: none;
-}
-
-#dropdownMenu1 {
-  all: initial;
-  border:0px;
-  font-family: 'Dosis', sans-serif;
-  color: white;
-  transition: color .2s, background-color .2s;
-}
-
-#dropdownMenu1 :hover {
-  all: initial;
-  color: grey;
-  text-decoration: none;
-
 }
