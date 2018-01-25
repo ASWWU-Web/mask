@@ -1,15 +1,16 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Routes, Router } from "@angular/router";
 import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-root',
-  template:  `
-      <nav-bar></nav-bar>
-      <router-outlet></router-outlet>
-      <div id="background" [class.fade1]="fade == 1" [class.fade2]="fade == 2" [class.fade3]="fade == 3" [class.fade4]="fade == 4"></div>
+  template: `
+  <nav-bar></nav-bar>
+  <sub-nav-bar></sub-nav-bar>
+  <router-outlet></router-outlet>
+  <div id="background" [class.fade1]="fade == 1" [class.fade2]="fade == 2" [class.fade3]="fade == 3" [class.fade4]="fade == 4"></div>
   `,
-    styleUrls: ['app.styles.css']
+  styleUrls: ['app.styles.css']
 })
 
 export class AppComponent {
