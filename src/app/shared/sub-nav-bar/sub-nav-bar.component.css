@@ -1,0 +1,32 @@
+@import 'https://fonts.googleapis.com/css?family=Dosis:300,400|Pacifico|Raleway:400,700';
+
+.navbar {
+  border-radius: 0;
+  height: 32px;
+  background-color: #161616;
+}
+
+#nav-links {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 300;
+}
+#nav-links li {
+  display: inline-block;
+  float: none;
+  padding: 0 16px 0 16px;
+}
+#nav-links li:nth-last-child(1) {
+  border-right: none;
+}
+#nav-links li a {
+  font-size: 10pt;
+  font-family: 'Dosis', sans-serif;
+  color: white;
+  transition: color .2s, background-color .2s;
+}
+#nav-links li a:hover {
+  color: grey;
+  text-decoration: none;
+}
