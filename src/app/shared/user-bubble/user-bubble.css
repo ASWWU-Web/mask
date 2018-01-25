@@ -5,16 +5,6 @@
 }
 /* image */
 .btn-circle {
-    /*width: 50px;*/
-    /*height: 50px;*/
-    /*text-align: center;*/
-    /*padding: 0;*/
-    /*font-size: 24px;*/
-    /*line-height: 1.42;*/
-    /*border-radius: 25px;*/
-    /*border-color: aqua;*/
-    /*color: #336699;*/
-    /* cursor: pointer; */
     width: 50px;
     height: auto;
     text-align: center;
@@ -27,9 +17,6 @@
 }
 /* container */
 #bubbleicon {
-    /*background-color: transparent;*/
-    /*border: none;*/
-    /*color: transparent;*/
     background-color: transparent;
     border: none;
     color: transparent;
@@ -44,8 +31,6 @@
 .dropdown-menu {
     width: 150px;
     position: absolute;
-    /* left: -50px; */
-
 }
 #bubble-popup{
     height: 50px;
