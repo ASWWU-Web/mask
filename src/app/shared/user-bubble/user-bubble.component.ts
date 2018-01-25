@@ -57,7 +57,6 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
             border: none;
             color: #336699;
             cursor: pointer;
-            
         }`,
         // container
         `#bubbleicon {
@@ -80,16 +79,9 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
             position: absolute;
             /*left: -50px;*/
         }`,
-//         `#bubble-popup{
-//     display: none;
-//     position: absolute;
-//     background-color: white;
-//     border: 1px solid #999999;
-//     padding: 5px;
-//     right: 50px;
-// }`,
-
-
+        `#bubble-popup{
+            height: 50px;
+        }`,
     ],
     providers: [
         RequestService,
