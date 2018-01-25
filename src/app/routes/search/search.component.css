@@ -21,9 +21,20 @@
     color: grey;
 }
 
-#mask-search-query::-webkit-input-placeholder{
+.mask-search-query::-webkit-input-placeholder{
     color: white;
-} /* add this for other browsers */
+}
+.form-control::placeholder-shown {
+    color: white;
+}
+.form-control::placeholder{
+    color:white;
+}
+.form-control::moz-placeholder{
+    color:white;
+}
+/* add this for other browsers */
+
 
 .parallax-window {
     height: 400px;
