@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RequestService } from './RequestService/requests';
 import { ProfileComponent, HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent } from './shared/shared';
+import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent } from './shared/shared';
 import { AppComponent } from './app.component';
 
 
@@ -27,7 +27,8 @@ import { AppComponent } from './app.component';
     SuperSearchComponent,
     NavBarComponent,
     UserBubbleComponent,
-    SubNavBarComponent
+    SubNavBarComponent,
+    MobileNavComponent
   ],
   imports: [
     BrowserModule,
