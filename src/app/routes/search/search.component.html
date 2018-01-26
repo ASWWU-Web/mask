@@ -7,8 +7,7 @@
         <div class="align-items-center" style="margin-left:auto;margin-right:auto;">
             <h1 class="text-white text-uppercase text-giant mx-auto">THE MASK</h1>
             <br>
-            <input [(ngModel)]='query' id="mask-search-query" class="form-control mx-auto" type="text"
-                   placeholder="Find the one...">
+            <input id="mask-search-query" class="form-control mx-auto" (input)="updateTypeahead()" [(ngModel)]='query' [ngbTypeahead]="typeaheadSearch" type="text" placeholder="Find the one...">
             <br>
             <h3 id="results" class="text-white text-uppercase mx-auto">↓results↓</h3>
         </div>
