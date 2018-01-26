@@ -52,19 +52,15 @@ export class UpdateComponent implements OnInit {
     });
   }
 
+  // Typeahead major/minor functions
   searchMajors = (text$: Observable<string>) =>
-    text$
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .map(term => term.length < 2 ? []
-        : this.searchables['majors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
-
+    text$.debounceTime(200).distinctUntilChanged().map(
+      term => term.length < 2 ? [] : this.searchables['majors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+    );
   searchMinors = (text$: Observable<string>) =>
-    text$
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .map(term => term.length < 2 ? []
-        : this.searchables['minors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+    text$.debounceTime(200).distinctUntilChanged().map(
+      term => term.length < 2 ? [] : this.searchables['minors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+    );
 
   // Because the `requestService` is private it cannot be accessed by the
   // template. Hence the reason for this function. :(

@@ -23,10 +23,6 @@
           <div *ngIf="searchables.hasOwnProperty(field)">
             <input *ngIf="field == 'majors'" id="typeahead-majors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMajors">
             <input *ngIf="field == 'minors'" id="typeahead-minors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMinors">
-            <!-- <input [attr.list]="field" class="form-control" [(ngModel)]="fullProfile[field]">
--            <datalist id="{{field}}">
--              <option *ngFor="let options of searchables[field]" [value]="options">{{options}}</option>
--            </datalist> -->
           </div>
           <select *ngIf="selectables.hasOwnProperty(field)" class="form-control" [(ngModel)]="fullProfile[field]">
             <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
