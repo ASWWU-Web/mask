@@ -46,11 +46,9 @@ export class SearchComponent implements OnInit {
   }
 
   typeaheadSearch = (text$: Observable<string>) =>
-    text$
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .map(term => term.length < 2 ? []
-        : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+    text$.distinctUntilChanged().map(
+      term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
+    );
 
   updateTypeahead() {
     //Query the server and sort the results.
@@ -66,10 +64,10 @@ export class SearchComponent implements OnInit {
           p2.views = 0;
         return p2.views - p1.views;
       });
+      this.typeaheadResults = [];
+      for(let profile of this.results) {
+        this.typeaheadResults.push(profile['full_name'])
+      }
     }, undefined)
-    this.typeaheadResults = [];
-    for(let profile of this.results) {
-      this.typeaheadResults.push(profile['full_name'])
-    }
   }
 }
