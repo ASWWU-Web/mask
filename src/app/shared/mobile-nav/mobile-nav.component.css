@@ -1,0 +1,21 @@
+/* Mobile Nav Styles */
+
+.mobile-nav-menu {
+
+}
+
+.mobile-nav-item {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
+/* Copied Styles */
+.bg-inverse {
+    background-color: #393c3d !important;
+}
+
+#nav-links[_ngcontent-c1] li[_ngcontent-c1] {
+    border-style:none !important;
+}
+

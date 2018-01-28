@@ -44,3 +44,38 @@
   text-decoration: none;
 
 }
+
+/* mobile nav */
+.mobile-nav-links li {
+  border-style:none !important;
+}
+
+.mobile-nav-item {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.mobile-scrollable-menu {
+  z-index: 2;
+  height:100vh;
+  overflow-y: auto;
+  position: fixed;
+  /* width: 90%; */
+
+}
+
+/* mobile nav menu animation */
+.collapse.mobile-scrollable-menu, .collapse.show {
+  display: block !important;
+  transition: all .25s ease-in-out;
+}
+
+.collapse.mobile-scrollable-menu{
+ opacity: 0;
+ width: 0;
+}
+
+.collapse.show {
+  opacity: 1;
+  width: 90%;
+}
