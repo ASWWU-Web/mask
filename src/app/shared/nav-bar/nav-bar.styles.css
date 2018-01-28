@@ -46,6 +46,23 @@
 }
 
 /* mobile nav */
+.mobile-hamburger {
+  background-color:transparent;
+  color:white;
+  height:50px;
+  width:50px;
+  border-radius: 5px;
+  position: absolute;
+  left:5px;
+  top:5px;
+}
+
+.mobile-hamburger:active {
+  color: darkslategray;
+  background-color: white;
+
+}
+
 .mobile-nav-links li {
   border-style:none !important;
 }
@@ -67,15 +84,20 @@
 /* mobile nav menu animation */
 .collapse.mobile-scrollable-menu, .collapse.show {
   display: block !important;
-  transition: all .25s ease-in-out;
+  transition: all .4s cubic-bezier(0, 1.03, 0.28, 0.99);
 }
 
 .collapse.mobile-scrollable-menu{
- opacity: 0;
  width: 0;
 }
 
 .collapse.show {
-  opacity: 1;
   width: 90%;
+}
+
+@media only screen and (min-width:720px) {
+  /* for desktop */
+  .desktop-hide {
+    width:0 !important;
+  }
 }

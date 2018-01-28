@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-inverse navbar-toggleable-sm">
-  <button type="button" class="btn navbar-toggler navbar-toggler-left" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="mobile-nav-collapsible">
+  <button class="mobile-hamburger hidden-md-up" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="mobile-nav-collapsible">
     <span class="fas fa-bars"></span>
   </button>
 
@@ -44,7 +44,7 @@
 
 </nav>
 
-<div class="hidden-md-up collapse mobile-scrollable-menu bg-inverse " id="mobile-nav-collapsible" [ngbCollapse]="isCollapsed">
+<div class="desktop-hide mobile-scrollable-menu bg-inverse hidden-md-up " id="mobile-nav-collapsible" [ngbCollapse]="isCollapsed">
   <ul _ngcontent-c1="" class="nav navbar-nav text-xs-center mr-auto mobile-nav-links" id="nav-links">
     <li _ngcontent-c1="" class="nav-item mobile-nav-item">
       <a _ngcontent-c1="" class="smooth text-uppercase" ng-reflect-router-link="/" href="/"> ASWWU</a>
