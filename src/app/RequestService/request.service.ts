@@ -112,10 +112,9 @@ export class RequestService {
     let params: HttpParams = new HttpParams();
     for (var key of Object.keys(obj)) {
       if (typeof obj[key] == "string") {
-        params = params.set(key, encodeURIComponent(obj[key]).replace(/%20/g, "+"));
-        // params = params.set(key, obj[key]);
+        params = params.append(key, obj[key].replace(/\;/g, ","));
       } else {
-        params = params.set(key, JSON.stringify(obj[key]));
+        params = params.append(key, JSON.stringify(obj[key]));
       }
     }
     return params;
@@ -124,7 +123,7 @@ export class RequestService {
   postxwww(uri: string, data: any, afterRequest, catchError): void {
     let body = this.objToHttpParams(data);
     this.verify();
-    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded; charset=UTF-8");
     this.http.post(req.url, body.toString(), req.options).subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
