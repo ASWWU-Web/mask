@@ -1,8 +1,4 @@
 <nav class="navbar navbar-dark bg-inverse navbar-toggleable-sm">
-  <button class="mobile-hamburger hidden-md-up" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="mobile-nav-collapsible">
-    <span class="fas fa-bars"></span>
-  </button>
-
   <div class="collapse navbar-collapse">
     <ul id="nav-links" class="nav navbar-nav text-xs-center mr-auto">
       <li class="nav-item">
@@ -43,17 +39,3 @@
 
 
 </nav>
-
-<div class="desktop-hide mobile-scrollable-menu bg-inverse hidden-md-up " id="mobile-nav-collapsible" [ngbCollapse]="isCollapsed">
-  <ul _ngcontent-c1="" class="nav navbar-nav text-xs-center mr-auto mobile-nav-links" id="nav-links">
-    <li _ngcontent-c1="" class="nav-item mobile-nav-item">
-      <a _ngcontent-c1="" class="smooth text-uppercase" ng-reflect-router-link="/" href="/"> ASWWU</a>
-    </li>
-    <li _ngcontent-c1="" class="nav-item mobile-nav-item">
-      <a _ngcontent-c1="" class="smooth text-uppercase" ng-reflect-router-link="/" href="/">Mask</a>
-    </li>
-    <li _ngcontent-c1="" class="nav-item mobile-nav-item">
-      <a _ngcontent-c1="" class="smooth text-uppercase" href="#">upcoming</a>
-    </li>
-  </ul>
-</div>

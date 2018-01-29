@@ -1,21 +1,55 @@
-/* Mobile Nav Styles */
-
-.mobile-nav-menu {
-
-}
-
-.mobile-nav-item {
+/* mobile nav */
+.mobile-hamburger {
+    background-color:transparent;
+    color:white;
+    height:50px;
+    width:50px;
+    border-radius: 5px;
+    position: absolute;
+    left:8px;
+    top:8px;
+  }
+  
+  .mobile-hamburger:active {
+    color: darkslategray;
+    background-color: white;
+  
+  }
+  
+  .mobile-nav-links li {
+    border-style:none !important;
+  }
+  
+  .mobile-nav-item {
     font-size: 1.5rem;
     font-weight: 500;
-}
-
-
-/* Copied Styles */
-.bg-inverse {
-    background-color: #393c3d !important;
-}
-
-#nav-links[_ngcontent-c1] li[_ngcontent-c1] {
-    border-style:none !important;
-}
-
+  }
+  
+  .mobile-scrollable-menu {
+    z-index: 2;
+    height:100vh;
+    overflow-y: auto;
+    position: fixed;
+    /* width: 90%; */
+  
+  }
+/* mobile nav menu animation */
+.collapse.mobile-scrollable-menu, .collapse.show {
+    display: block !important;
+    transition: all .4s cubic-bezier(0, 1.03, 0.28, 0.99);
+  }
+  
+  .collapse.mobile-scrollable-menu{
+   width: 0;
+  }
+  
+  .collapse.show {
+    width: 90%;
+  }
+  
+  @media only screen and (min-width:768px) {
+    /* for desktop */
+    .desktop-hide {
+      width:0 !important;
+    }
+  }
