@@ -23,7 +23,7 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
                         </div>
                     </div>
                </div>
-               <a *ngIf="!isLoggedIn" class="btn btn-primary" [href]="'https://saml.aswwu.com/?redirectURI=/mask'+ router.url">Log in</a>
+               <a *ngIf="!isLoggedIn" class="btn btn-primary float-right" [href]="'https://saml.aswwu.com/?redirectURI=/mask'+ router.url">Log in</a>
 `,
     styleUrls: ["user-bubble.css"],
     providers: [

@@ -7,6 +7,7 @@ import { Location } from "@angular/common";
   template: `
   <nav-bar></nav-bar>
   <sub-nav-bar></sub-nav-bar>
+  <mobile-nav></mobile-nav>
   <router-outlet></router-outlet>
   <div id="background" [class.fade1]="fade == 1" [class.fade2]="fade == 2" [class.fade3]="fade == 3" [class.fade4]="fade == 4"></div>
   `,
