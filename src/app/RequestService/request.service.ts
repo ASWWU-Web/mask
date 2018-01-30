@@ -8,7 +8,7 @@ import { HttpClientModule, HttpClient, HttpParams, HttpHeaders } from '@angular/
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { SERVER_URL, COOKIE_DOMAIN } from '../config';
+import { environment } from "../../environments/environment";
 import { User } from "./user.model";
 import { Subscription } from "rxjs/Subscription";
 
@@ -57,7 +57,7 @@ export class RequestService {
   private createRequest(uri: string, contentType: string = "application/json"): any {
     let url = uri;
     if (!url.startsWith("http")) {
-      url = SERVER_URL;
+      url = environment.SERVER_URL;
       if (url.split('').pop() != '/' && uri[0] != '/') url += '/';
       url += uri;
     }
@@ -110,16 +110,11 @@ export class RequestService {
 
   private objToHttpParams(obj): HttpParams {
     let params: HttpParams = new HttpParams();
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        // params = params.set(key, obj[key]);
-        //This code technically works but Angular says that .set() takes
-        //Two strings only.
-        if (typeof obj[key] == "string") {
-          params = params.set(key, obj[key]);
-        } else {
-          params = params.set(key, JSON.stringify(obj[key]));
-        }
+    for (var key of Object.keys(obj)) {
+      if (typeof obj[key] == "string") {
+        params = params.append(key, obj[key].replace(/\;/g, ","));
+      } else {
+        params = params.append(key, JSON.stringify(obj[key]));
       }
     }
     return params;
@@ -128,7 +123,7 @@ export class RequestService {
   postxwww(uri: string, data: any, afterRequest, catchError): void {
     let body = this.objToHttpParams(data);
     this.verify();
-    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded; charset=UTF-8");
     this.http.post(req.url, body.toString(), req.options).subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))

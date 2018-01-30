@@ -1,23 +1,27 @@
 @import 'https://fonts.googleapis.com/css?family=Dosis:300,400|Pacifico|Raleway:400,700';
 
-/*Nav*/
+.navbar {
+  border-radius: 0;
+  height: 32px;
+  background-color: #161616;
+}
+
 #nav-links {
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 300;
 }
-
 #nav-links li {
   display: inline-block;
   float: none;
-  border-right: 1px solid white;
   padding: 0 16px 0 16px;
 }
 #nav-links li:nth-last-child(1) {
   border-right: none;
 }
 #nav-links li a {
+  font-size: 10pt;
   font-family: 'Dosis', sans-serif;
   color: white;
   transition: color .2s, background-color .2s;
@@ -25,25 +29,4 @@
 #nav-links li a:hover {
   color: grey;
   text-decoration: none;
-}
-.navbar {
-  border-radius: 0;
-}
-.dropdown {
-  /* Sub navbar has z-index: 1030 and these should be above that. */
-  z-index: 1050;
-}
-.dropdown div button {
-  all: initial;
-  border:0px;
-  font-family: 'Dosis', sans-serif;
-  color: white;
-  transition: color .2s, background-color .2s;
-}
-
-.dropdown div button :hover {
-  all: initial;
-  color: grey;
-  text-decoration: none;
-
 }
