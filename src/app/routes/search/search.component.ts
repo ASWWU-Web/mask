@@ -29,10 +29,11 @@ import { SearchResultsComponent } from '../../shared/shared';
 })
 
 export class SearchComponent implements OnInit {
-  query: string;
-  results: any[] = [];
+  typedQuery: string;
+  searchQuery: string;
+  allProfiles: any[] = [];
   typeaheadResults: string[] = [];
-  private resultsSub: Subscription;
+  resultsSub: Subscription;
   typeaheadSub: Subscription;
 
   constructor(private activatedRoute: ActivatedRoute, private rs: RequestService) {}
@@ -41,8 +42,23 @@ export class SearchComponent implements OnInit {
     // subscribe to router event
     this.resultsSub = this.activatedRoute.params.subscribe(
       (param: any) => {
-        this.query = param['query'];
+        this.searchQuery = param['query'];
     });
+    // get all profile view info
+    var query = this.typedQuery || "";
+    this.typeaheadSub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+      this.allProfiles = data.results.sort((p1,p2) => {
+        if (p1.views == "None")
+          p1.views = 0;
+        if (p2.views == "None")
+          p2.views = 0;
+        return p2.views - p1.views;
+      });
+      this.typeaheadResults.push('');
+      for(let profile of this.allProfiles) {
+        this.typeaheadResults.push(profile['full_name']);
+      }
+    }, undefined)
   }
 
   typeaheadSearch = (text$: Observable<string>) =>
@@ -50,24 +66,11 @@ export class SearchComponent implements OnInit {
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
     );
 
-  updateTypeahead() {
-    //Query the server and sort the results.
-    if(this.typeaheadSub != null) {
-      this.typeaheadSub.unsubscribe();
-    }
-    var query = this.query || "";
-    this.typeaheadSub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-      this.results = data.results.sort((p1,p2) => {
-        if (p1.views == "None")
-          p1.views = 0;
-        if (p2.views == "None")
-          p2.views = 0;
-        return p2.views - p1.views;
-      });
-      this.typeaheadResults = [];
-      for(let profile of this.results) {
-        this.typeaheadResults.push(profile['full_name'])
-      }
-    }, undefined)
+  runSearch() {
+    this.searchQuery = this.typedQuery;
+  }
+
+  addFirstResult() {
+    this.typeaheadResults[0] = this.typedQuery;
   }
 }
