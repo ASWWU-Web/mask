@@ -6,5 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mobile-nav.component.css']
 })
 export class MobileNavComponent {
-  
+  isCollapsed: boolean = true;
+
 }
