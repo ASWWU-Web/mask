@@ -1,6 +1,9 @@
 .container-fluid {
     padding:0px;
 }
+.search-button {
+    margin-top: 15px;
+}
 
 #mask-search-query {
     font-family: 'Raleway', sans-serif;

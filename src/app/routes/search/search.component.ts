@@ -10,6 +10,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 import { RequestService } from '../../RequestService/request.service';
 import { SearchResultsComponent } from '../../shared/shared';
+import { SearchableFields } from '../../shared/fields';
 
 // @Component({
 //   template:  `
@@ -58,18 +59,29 @@ export class SearchComponent implements OnInit {
       for(let profile of this.allProfiles) {
         this.typeaheadResults.push(profile['full_name']);
       }
+      for(let major of SearchableFields['majors']) {
+        this.typeaheadResults.push('majors=' + major);
+      }
+      // for(let minor of SearchableFields['minors']) {
+      //   this.typeaheadResults.push('minors=' + minor);
+      // }
     }, undefined)
   }
 
+  formatter = (result: string) => result.substr(0,7) == 'majors=' ? result.substr(7) : result.substr(0);
+
+  // Calculate the possible typeaheads
   typeaheadSearch = (text$: Observable<string>) =>
     text$.distinctUntilChanged().map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
     );
 
+  // Runs the search
   runSearch() {
     this.searchQuery = this.typedQuery;
   }
 
+  // Sets the first result of typeahead to the typed text
   addFirstResult() {
     this.typeaheadResults[0] = this.typedQuery;
   }
