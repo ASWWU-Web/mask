@@ -17,6 +17,9 @@ export class RequestService {
   authUser: User;
   private isLoggedIn: boolean = false;
 
+  searchAllResults: any = [];
+
+
   private setCurrentUser(user: any): void {
     if (user.hasOwnProperty("wwuid") && user.wwuid) {
       this.authUser = new User(user);
@@ -139,6 +142,25 @@ export class RequestService {
         err => (catchError ? catchError(err) : console.error(err))
       );
     return (subscription);
+  }
+
+  //This function returns the results for `/search/all`.
+  // It also caches this result.
+  searchAll(afterRequest, catchError): void {
+    if(this.searchAllResults.length > 0 ) {
+      let req = this.createRequest('/search/all');
+      this.verify();
+      this.http.get(req.url, req.options)
+        .subscribe(
+          data => {
+            this.searchAllResults = data;
+            afterRequest(data);
+          },
+          err => (catchError ? catchError(err) : console.error(err))
+        );
+    } else {
+      afterRequest(this.searchAllResults);
+    }
   }
   /*
   * Function to view whether or not the user is logged in.
