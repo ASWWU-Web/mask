@@ -9,3 +9,6 @@ export const DEFAULT_PHOTO = 'images/mask_unknown.png';
 //YEARS
 export const CURRENT_YEAR = '1718';
 export const ARCHIVE_YEARS = ["1617","1516","1415","1314","1213","1112","1011","0910","0809","0708","0607"];
+
+//AUTH
+export const AUTH_URI = "https://saml.aswwu.com/";
