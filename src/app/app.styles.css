@@ -1,3 +1,7 @@
+app-root {
+  /* offset padding for the footer */
+  padding-bottom: 35.2px;
+}
 #background {
   position: fixed;
   top: 0;

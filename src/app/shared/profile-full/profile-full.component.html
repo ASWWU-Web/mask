@@ -3,7 +3,7 @@
     <img class="img-fluid" src='{{getPhotoLink(profile.photo)}}'>
   </div>
   <div class="col-sm-12 col-md-6">
-    <h1 class='text-capitalize text-white'>{{profile?.full_name}} <span *ngIf="profile?.year != CURRENT_YEAR">({{profile.year}})</span></h1>
+    <h1 class='text-capitalize text-white'>{{profile?.full_name | unescape}} <span *ngIf="profile?.year != CURRENT_YEAR">({{profile.year}})</span></h1>
     <hr>
     <p *ngFor="let key of fieldsInOrder">
       <span *ngIf="profile[key]">
@@ -12,7 +12,7 @@
         <h5 class="info">
           <span *ngFor="let attribute of profile[key].split(','); let last = last;">
             <br>
-            <a class="text-white" [routerLink]="['/search', key + '=' + attribute]">{{attribute + (last ? "" : ",")}}</a>
+            <a class="text-white" [routerLink]="['/search', key + '=' + attribute]">{{attribute + (last ? "" : ",") | unescape}}</a>
           </span>
         </h5>
       </span>

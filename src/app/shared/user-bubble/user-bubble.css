@@ -31,6 +31,7 @@
 .dropdown-menu {
     width: 150px;
     position: absolute;
+    z-index: 1031;
 }
 #bubble-popup{
     height: 50px;

@@ -1,0 +1,48 @@
+<button class="mobile-hamburger hidden-md-up" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="mobile-nav-collapsible">
+  <span class="fas fa-bars"></span>
+</button>
+
+<div class="desktop-hide mobile-scrollable-menu hidden-md-up bg-inverse" id="mobile-nav-collapsible" [ngbCollapse]="!isCollapsed">
+  <div class="main-mobile-nav-links">
+    <ul _ngcontent-c1="" class="nav navbar-nav text-xs-center mr-auto mobile-nav-links">
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a _ngcontent-c1="" class="smooth text-uppercase" ng-reflect-router-link="/" href="/"> ASWWU</a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a _ngcontent-c1="" class="smooth text-uppercase" ng-reflect-router-link="/" href="/">Mask</a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a _ngcontent-c1="" class="smooth text-uppercase" href="#">Jobs</a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a _ngcontent-c1="" class="smooth text-uppercase" href="#">Upcoming</a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a class="smooth text-uppercase" href="https://aswwu.com/atlas">Atlas <span class="fas fa-external-link-square-alt float-right"></span></a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a class="text-uppercase" href="#">Things to do </a>
+      </li>
+      <li _ngcontent-c1="" class="nav-item mobile-nav-item">
+        <a class="smooth text-uppercase" href="#">Gear</a>
+      </li>
+    </ul>
+  </div>
+  <div class="sub-mobile-nav-links">
+    <ul class="nav navbar-nav text-xs-center mr-auto mobile-nav-links">
+      <li class="nav-item">
+        <a class="smooth" [routerLink]="['/']"> Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="smooth" [routerLink]="['/search/']"> Super Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="smooth" [routerLink]="['/random']"> Random Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="smooth" [routerLink]="['/birthdays']"> Birthdays</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
