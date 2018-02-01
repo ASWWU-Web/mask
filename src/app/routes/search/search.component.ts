@@ -37,14 +37,8 @@ export class SearchComponent implements OnInit {
     });
     // get all profile view info
     var query = this.typedQuery || "";
-    this.typeaheadSub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-      this.allProfiles = data.results.sort((p1,p2) => {
-        if (p1.views == "None")
-          p1.views = 0;
-        if (p2.views == "None")
-          p2.views = 0;
-        return p2.views - p1.views;
-      });
+    this.typeaheadSub = this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+      this.allProfiles = data.results;
       this.typeaheadResults.push('');
       // Add all profiles to typeahead options
       for(let profile of this.allProfiles) {
@@ -60,6 +54,7 @@ export class SearchComponent implements OnInit {
     }, undefined)
   }
 
+  //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
   typeaheadFormatter = (result: string) => {
     if(result.substr(0,7) == 'majors=') {
       return 'Major: ' + result.substr(7);
