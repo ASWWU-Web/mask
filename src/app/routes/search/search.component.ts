@@ -24,20 +24,14 @@ export class SearchComponent implements OnInit {
   searchQuery: string;
   allProfiles: any[] = [];
   typeaheadResults: string[] = [];
-  resultsSub: Subscription;
   typeaheadSub: Subscription;
 
   constructor(private activatedRoute: ActivatedRoute, private rs: RequestService) {}
 
   ngOnInit() {
-    // subscribe to router event
-    this.resultsSub = this.activatedRoute.params.subscribe(
-      (param: any) => {
-        this.searchQuery = param['query'];
-    });
     // get all profile view info
     var query = this.typedQuery || "";
-    this.typeaheadSub = this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+    this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
       this.allProfiles = data.results;
       this.typeaheadResults.push('');
       // Add all profiles to typeahead options
