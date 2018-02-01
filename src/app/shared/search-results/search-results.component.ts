@@ -26,6 +26,7 @@ export class SearchResultsComponent {
   shownResults: any[] = [];
   shown: number = 0;
   sub: Subscription = null;
+  searching: boolean = false;
 
   constructor (private rs: RequestService) {}
 
@@ -42,6 +43,8 @@ export class SearchResultsComponent {
   }
 
   update() {
+    // Set searching to true
+    this.searching = true;
     //Query the server and sort the results.
     if(this.sub != null) {
       this.sub.unsubscribe();
@@ -71,7 +74,6 @@ export class SearchResultsComponent {
         })
         this.showMore();
       }, undefined)
-
     }
   }
 
@@ -80,7 +82,7 @@ export class SearchResultsComponent {
     var nIndex = cIndex + 24;
     this.shownResults = this.shownResults.concat(this.results.slice(cIndex,nIndex));
     this.shown = nIndex;
-
-
+    // Set searching to false
+    this.searching = false;
   }
 }
