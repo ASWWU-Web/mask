@@ -46,9 +46,11 @@ export class SearchComponent implements OnInit {
         return p2.views - p1.views;
       });
       this.typeaheadResults.push('');
+      // Add all profiles to typeahead options
       for(let profile of this.allProfiles) {
         this.typeaheadResults.push(profile['full_name']);
       }
+      // Add all majors and minors to typeahead options
       for(let major of SearchableFields['majors']) {
         this.typeaheadResults.push('majors=' + major);
       }
