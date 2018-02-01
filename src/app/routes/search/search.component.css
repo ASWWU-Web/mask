@@ -1,11 +1,7 @@
 .container-fluid {
     padding:0px;
 }
-.search-button {
-    margin-top: 15px;
-}
-
-#mask-search-query {
+.search-area-element {
     font-family: 'Raleway', sans-serif;
     color: white;
     border-radius: 0;
@@ -20,6 +16,14 @@
 }
 
 #mask-search-query:focus {
+    background-color: white;
+    color: grey;
+}
+#mask-search-button {
+  border-left: 0px;
+  transform: translateX(-1px);
+}
+#mask-search-button:hover {
     background-color: white;
     color: grey;
 }

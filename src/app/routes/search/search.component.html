@@ -7,9 +7,9 @@
         <div class="align-items-center" (keyup.enter)="runSearch()" style="margin-left:auto;margin-right:auto;">
           <h1 class="text-white text-uppercase text-giant mx-auto">THE MASK</h1>
           <br />
-          <div>
-            <input id="mask-search-query" class="form-control mx-auto" [(ngModel)]='typedQuery' (ngModelChange)="addFirstResult()" [ngbTypeahead]="typeaheadSearch" [resultFormatter]="formatter" type="text" placeholder="Find the one...">
-            <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="runSearch()">Search!</button>
+          <div class="row justify-content-md-center">
+            <input id="mask-search-query" class="search-area-element col form-control" [(ngModel)]='typedQuery' (ngModelChange)="addFirstResult()" [ngbTypeahead]="typeaheadSearch" [resultFormatter]="formatter" type="text" placeholder="Find the one...">
+            <button id="mask-search-button" class="search-area-element col-sm-2 form-control" (click)="runSearch()">Search!</button>
             <h3 id="results" class="text-white text-uppercase mx-auto">↓results↓</h3>
           </div>
         </div>

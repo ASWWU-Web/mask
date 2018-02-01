@@ -62,19 +62,28 @@ export class SearchComponent implements OnInit {
       for(let major of SearchableFields['majors']) {
         this.typeaheadResults.push('majors=' + major);
       }
-      // for(let minor of SearchableFields['minors']) {
-      //   this.typeaheadResults.push('minors=' + minor);
-      // }
+      for(let minor of SearchableFields['minors']) {
+        this.typeaheadResults.push('minors=' + minor);
+      }
     }, undefined)
   }
 
-  formatter = (result: string) => result.substr(0,7) == 'majors=' ? result.substr(7) : result.substr(0);
+  formatter = (result: string) => {
+    if(result.substr(0,7) == 'majors=') {
+      return 'Major: ' + result.substr(7);
+    }
+    else if(result.substr(0,7) == 'minors=') {
+      return 'Minor: ' + result.substr(7);
+    }
+    return result.substr(0);
+  }
 
   // Calculate the possible typeaheads
-  typeaheadSearch = (text$: Observable<string>) =>
-    text$.distinctUntilChanged().map(
+  typeaheadSearch = (text$: Observable<string>) => {
+    return text$.distinctUntilChanged().map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
     );
+  }
 
   // Runs the search
   runSearch() {
