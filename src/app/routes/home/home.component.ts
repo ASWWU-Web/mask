@@ -7,7 +7,7 @@ import { RequestService } from "../../RequestService/requests";
   template:  `
     <h2>Home</h2>
 
-    <div *ngFor="let student of test"> {{student.email}}</div>
+    <div *ngFor="let student of test"> {{student.email | unescape}}</div>
   `,
   providers: [RequestService, CommonModule]
 })
