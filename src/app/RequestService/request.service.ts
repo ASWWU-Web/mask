@@ -147,7 +147,7 @@ export class RequestService {
   //This function returns the results for `/search/all`.
   // It also caches this result.
   searchAll(afterRequest, catchError): void {
-    if(this.searchAllResults.length > 0 ) {
+    if(this.searchAllResults.length == 0 ) {
       let req = this.createRequest('/search/all');
       this.verify();
       this.http.get(req.url, req.options)
@@ -159,7 +159,7 @@ export class RequestService {
           err => (catchError ? catchError(err) : console.error(err))
         );
     } else {
-      afterRequest(this.searchAllResults);
+      afterRequest({"results": this.searchAllResults});
     }
   }
   /*

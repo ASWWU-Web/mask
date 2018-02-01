@@ -29,7 +29,7 @@ export class RandomComponent implements OnInit {
     constructor(private requestService: RequestService) {}
 
     ngOnInit() {
-        this.requestService.get("/search/all", (data) => {
+        this.requestService.searchAll((data) => {
             this.allProfiles = data['results'];
             this.getRandom();
         }, undefined);

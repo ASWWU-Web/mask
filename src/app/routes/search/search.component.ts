@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     // get all profile view info
     var query = this.typedQuery || "";
-    this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+    this.rs.searchAll((data) => {
       this.allProfiles = data.results;
       this.typeaheadResults.push('');
       // Add all profiles to typeahead options
