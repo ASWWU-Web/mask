@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
@@ -12,16 +12,6 @@ import { RequestService } from '../../RequestService/request.service';
 import { SearchResultsComponent } from '../../shared/shared';
 import { SearchableFields } from '../../shared/fields';
 
-// @Component({
-//   template:  `
-    // <div class="container">
-    //   <h2>Search</h2>
-    //   <!--Two way data binding is cool but not very efficient in this case. -->
-    //   <input [(ngModel)]='query'>
-    //   <search-results [query]='query'></search-results>
-    // </div>
-//   `,
-// })
 
 @Component({
   templateUrl: 'search.component.html',
@@ -68,22 +58,20 @@ export class SearchComponent implements OnInit {
     }, undefined)
   }
 
-  formatter = (result: string) => {
+  typeaheadFormatter = (result: string) => {
     if(result.substr(0,7) == 'majors=') {
       return 'Major: ' + result.substr(7);
-    }
-    else if(result.substr(0,7) == 'minors=') {
+    } else if(result.substr(0,7) == 'minors=') {
       return 'Minor: ' + result.substr(7);
     }
     return result.substr(0);
   }
 
   // Calculate the possible typeaheads
-  typeaheadSearch = (text$: Observable<string>) => {
-    return text$.distinctUntilChanged().map(
+  typeaheadSearch = (text$: Observable<string>) =>
+    text$.distinctUntilChanged().map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
     );
-  }
 
   // Runs the search
   runSearch() {
