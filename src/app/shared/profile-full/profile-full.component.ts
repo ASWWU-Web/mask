@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { RequestService } from '../../RequestService/request.service';
 
-import { ProfileModel, FieldsInOrder, UnescapePipe } from '../shared';
-import {CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
+import { ProfileModel } from '../profile.model';
+import { FieldsInOrder } from '../fields';
+import { UnescapePipe } from '../unescape';
+import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
 
 @Component({
 	selector: 'profile-full',
