@@ -17,7 +17,7 @@ export class RequestService {
   authUser: User;
   private isLoggedIn: boolean = false;
 
-  searchAllResults: any = [];
+  private searchAllResults: any[] = [];
 
 
   private setCurrentUser(user: any): void {
@@ -147,13 +147,14 @@ export class RequestService {
   //This function returns the results for `/search/all`.
   // It also caches this result.
   searchAll(afterRequest, catchError): void {
-    if(this.searchAllResults.length == 0 ) {
+    console.log("searchAllResults", this.searchAllResults)
+    if(this.searchAllResults.length == 0) {
       let req = this.createRequest('/search/all');
       this.verify();
       this.http.get(req.url, req.options)
         .subscribe(
           data => {
-            this.searchAllResults = data;
+            this.searchAllResults = data['results'];
             afterRequest(data);
           },
           err => (catchError ? catchError(err) : console.error(err))
