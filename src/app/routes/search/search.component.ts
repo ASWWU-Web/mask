@@ -33,18 +33,7 @@ export class SearchComponent implements OnInit {
     var query = this.typedQuery || "";
     this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
       this.allProfiles = data.results;
-      this.typeaheadResults.push('');
-      // Add all profiles to typeahead options
-      for(let profile of this.allProfiles) {
-        this.typeaheadResults.push(profile['full_name']);
-      }
-      // Add all majors and minors to typeahead options
-      for(let major of SearchableFields['majors']) {
-        this.typeaheadResults.push('majors=' + major);
-      }
-      for(let minor of SearchableFields['minors']) {
-        this.typeaheadResults.push('minors=' + minor);
-      }
+      this.setupTypeAhead();
     }, undefined)
   }
 
@@ -72,5 +61,20 @@ export class SearchComponent implements OnInit {
   // Sets the first result of typeahead to the typed text
   addFirstResult() {
     this.typeaheadResults[0] = this.typedQuery;
+  }
+
+  setupTypeAhead() {
+    this.typeaheadResults.push('');
+    // Add all profiles to typeahead options
+    for(let profile of this.allProfiles) {
+      this.typeaheadResults.push(profile['full_name']);
+    }
+    // Add all majors and minors to typeahead options
+    for(let major of SearchableFields['majors']) {
+      this.typeaheadResults.push('majors=' + major);
+    }
+    for(let minor of SearchableFields['minors']) {
+      this.typeaheadResults.push('minors=' + minor);
+    }
   }
 }
