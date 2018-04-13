@@ -30,18 +30,14 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     //Get the Params from the URL.
-    this.activatedRoute.params.subscribe(
-      (param: any) => {
-        this.typedQuery = param['query'];
-        this.searchQuery = param['query'];
-
-        // get all profile view info
-        var query = this.typedQuery || ""; // Ensure that query is at least "".
-        this.rs.get('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-          this.allProfiles = data.results;
-          this.setupTypeAhead();
-        }, undefined)
+    this.activatedRoute.params.subscribe((param: any) => {
+      this.searchQuery = param['query'] || '';
+      this.typedQuery = param['query'] || '';
     });
+    this.rs.get('/search/all' , (data) => {
+      this.allProfiles = data.results;
+      this.setupTypeAhead();
+    }, undefined)
 
   }
 
