@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 #aswwuFooter {
-    border-radius:0; 
-    position:fixed; 
+    border-radius:0;
+    position:fixed;
     bottom:0px; width:100%
+}
+@media only screen and (min-width:768px) {
+  /* for desktop */
+  .desktop-hide {
+    width:0 !important;
+  }
 }
