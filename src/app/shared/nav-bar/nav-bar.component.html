@@ -2,40 +2,41 @@
   <div class="collapse navbar-collapse">
     <ul id="nav-links" class="nav navbar-nav text-xs-center mr-auto">
       <li class="nav-item">
-        <a class="smooth text-uppercase" [routerLink]="['/']"> ASWWU</a>
+        <a class="smooth text-uppercase" href=""> ASWWU</a>
       </li>
-      <li >
-        <a class="smooth text-uppercase" [routerLink]="['/']">Mask</a>
+      <li>
+        <a class="smooth text-uppercase" href="/mask">Mask</a>
       </li>
-      <li class='hidden-xs-down'>
-        <a class="smooth text-uppercase" href="https://aswwu.com/jobs">Jobs</a>
+      <li>
+        <a class="smooth text-uppercase" href="/jobs">Jobs</a>
       </li>
-      <li class='hidden-xs-down'>
-        <a class="smooth text-uppercase" href="https://aswwu.com/dev/#upcoming">upcoming</a>
+      <li>
+        <a class="smooth text-uppercase" href="#upcoming">Upcoming</a>
       </li>
       <li class="dropdown">
         <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary text-uppercase" id="dropdownDepartments" ngbDropdownToggle>Departments</button>
-          <div class="dropdown-menu bg-inverse" aria-labelledby="dropdownDepartments">
-            <a href="https://aswwu.com/administration" class="dropdown-item text-uppercase">Administration</a>
-            <a href="https://aswwu.com/atlas" class="dropdown-item text-uppercase">Atlas</a>
-            <a href="https://aswwu.com/#/collegian/" class="dropdown-item text-uppercase">Collegian</a>
-            <a href="https://aswwu.com/#/globalservice/" class="dropdown-item text-uppercase">Global Service</a>
-            <a href="https://aswwu.com/#/departments/outdoors" class="dropdown-item text-uppercase">Outdoors</a>
-            <a href="https://aswwu.com/photo" class="dropdown-item text-uppercase">Photo</a>
-            <a href="https://aswwu.com/social" class="dropdown-item text-uppercase">Social</a>
-            <a href="https://aswwu.com/#/departments/tread_shed" class="dropdown-item text-uppercase">Tread Shed</a>
-            <a href="https://aswwu.com/video" class="dropdown-item text-uppercase">Video</a>
+          <button ngbDropdownToggle class="btn btn-outline-primary text-uppercase" id="dropdownDepartments" >Departments</button>
+          <div ngbDropdownMenu class="dropdown-menu bg-dark" aria-labelledby="dropdownDepartments">
+            <a href="/pages/administration" class="dropdown-item text-uppercase">Administration</a>
+            <a class="dropdown-item text-uppercase" href="/atlas">Atlas</a>
+            <a href="/pages/collegian" class="dropdown-item text-uppercase">Collegian</a>
+            <a href="/pages/globalservice" class="dropdown-item text-uppercase">Global Service</a>
+            <a href="/pages/outdoors" class="dropdown-item text-uppercase">Outdoors</a>
+            <a href="/pages/photo" class="dropdown-item text-uppercase">Photo</a>
+            <a href="/pages/senate" class="dropdown-item text-uppercase">Senate</a>
+            <a href="/pages/social" class="dropdown-item text-uppercase">Social</a>
+            <a href="/pages/treadshed" class="dropdown-item text-uppercase">Tread Shed</a>
+            <a href="/pages/video" class="dropdown-item text-uppercase smooth">Video</a>
           </div>
         </div>
       </li>
       <li class="dropdown">
         <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-primary text-uppercase" id="dropdownMore" ngbDropdownToggle>More</button>
-          <div class="dropdown-menu bg-inverse" aria-labelledby="dropdownMore">
-            <a class="dropdown-item smooth text-uppercase" href="#">Things to do </a>
-            <a class="dropdown-item smooth text-uppercase" href="#">Gear</a>
-            <a class="dropdown-item text-uppercase smooth" href="#">SM/AC map</a>
+          <button ngbDropdownToggle class="btn btn-outline-primary text-uppercase" id="dropdownMore" >More</button>
+          <div ngbDropdownMenu class="dropdown-menu bg-dark" aria-labelledby="dropdownMore">
+            <a class="dropdown-item smooth text-uppercase" href="https://class.wallawalla.edu">D2L</a>
+            <a class="dropdown-item smooth text-uppercase" href="https://mywwu.wallawalla.edu">myWWU</a>
+            <a class="dropdown-item text-uppercase smooth" href="https://office365.wallawalla.edu">Office 365 Email</a>
           </div>
         </div>
       </li>
