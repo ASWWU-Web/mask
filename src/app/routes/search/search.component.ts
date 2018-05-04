@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
@@ -26,7 +27,7 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService) {}
+  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService, private location: Location) {}
 
   ngOnInit() {
     //Get the Params from the URL.
@@ -60,6 +61,7 @@ export class SearchComponent implements OnInit {
   // Runs the search
   runSearch() {
     this.searchQuery = this.typedQuery;
+    this.location.replaceState("/search/" + this.searchQuery);
   }
 
   // Sets the first result of typeahead to the typed text
