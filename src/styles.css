@@ -5,9 +5,16 @@
     position:fixed;
     bottom:0px; width:100%
 }
-@media only screen and (min-width:768px) {
-  /* for desktop */
-  .desktop-hide {
+
+.footerContainer {
+  position:relative;
+  display:inline-block;
+  height:100%;
+}
+
+@media only screen and (max-width:768px) {
+  .mobile-hide {
     width:0 !important;
+    display: none !important;
   }
 }
