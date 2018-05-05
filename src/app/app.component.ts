@@ -10,19 +10,20 @@ import { Location } from "@angular/common";
   <mobile-nav></mobile-nav>
   <router-outlet></router-outlet>
   <div id="background" [class.fade1]="fade == 1" [class.fade2]="fade == 2" [class.fade3]="fade == 3" [class.fade4]="fade == 4"></div>
-  <div style="position: relative;">
-  <nav id="aswwuFooter" class="navbar navbar-dark bg-inverse">
-    <div class="float-left text-white small">
-      Made with
-      <font color="red">♥</font> by the <a href="https://aswwu.com" target="_blank">ASWWU</a> web team.
-      <span style="float:right;">
-        <a href="mailto:ryan.rabello@wallawalla.edu" class="text-white smooth">Report a Problem</a>
-        &nbsp;&nbsp;&nbsp;
-        <a (click)="scrollToTop()" class="text-white smooth footer-link" href="javascript:;">Back to Top</a>
-      </span>
-    </div>
-  </nav>
-</div>`,
+  <div class="mobile-hide footerContainer" >
+    <nav id="aswwuFooter" class="navbar navbar-dark bg-inverse">
+      <div class="float-left text-white small">
+        Made with
+        <font color="red">♥</font> by the <a href="https://aswwu.com" target="_blank">ASWWU</a> web team.
+        <span style="float:right;">
+          <a href="mailto:ryan.rabello@wallawalla.edu" class="text-white smooth">Report a Problem</a>
+          &nbsp;&nbsp;&nbsp;
+          <a (click)="scrollToTop()" class="text-white smooth" href="javascript:;">Back to Top</a>
+        </span>
+      </div>
+    </nav>
+  </div>
+`,
   styleUrls: ['app.styles.css']
 })
 
