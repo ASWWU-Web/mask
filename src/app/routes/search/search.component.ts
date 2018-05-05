@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
@@ -20,19 +21,21 @@ import { SearchableFields } from '../../shared/fields';
 })
 
 export class SearchComponent implements OnInit {
-  typedQuery: string;
+  typedQuery: string = '';
   searchQuery: string;
   allProfiles: any[] = [];
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService) {}
+  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService, private location: Location) {}
 
   ngOnInit() {
     //Get the Params from the URL.
-    this.activatedRoute.params.subscribe((param: any) => {
-      this.searchQuery = param['query'] || '';
-      this.typedQuery = param['query'] || '';
+    this.activatedRoute.queryParamMap.subscribe( params => {
+      this.typedQuery = params.get("query");
+      if(this.typedQuery) {
+        this.runSearch();
+      }
     });
     this.rs.get('/search/all' , (data) => {
       this.allProfiles = data.results;
@@ -60,6 +63,7 @@ export class SearchComponent implements OnInit {
   // Runs the search
   runSearch() {
     this.searchQuery = this.typedQuery;
+    this.location.replaceState("/search?query=" + this.typedQuery);
   }
 
   // Sets the first result of typeahead to the typed text
