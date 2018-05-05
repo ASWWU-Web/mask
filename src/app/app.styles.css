@@ -47,3 +47,26 @@ app-root {
   -o-filter: saturate(0%) brightness(10%);
   filter: saturate(0%) brightness(10%);
 }
+
+#aswwuFooter {
+    border-radius:0;
+    position:fixed;
+    bottom:0px; width:100%
+}
+
+.footerContainer {
+  position:relative;
+  display:inline-block;
+  height:100%;
+}
+
+@media only screen and (max-width:768px) {
+  .mobile-hide {
+    width:0 !important;
+    display: none !important;
+  }
+}
+
+.footer-link :hover {
+  text-decoration-line: underline !important;
+}

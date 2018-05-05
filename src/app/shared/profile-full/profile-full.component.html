@@ -12,7 +12,7 @@
         <h5 class="info">
           <span *ngFor="let attribute of profile[key].split(','); let last = last;">
             <br>
-            <a class="text-white" [routerLink]="['/search', key + '=' + attribute]">{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a class="text-white" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}">{{attribute + (last ? "" : ",") | unescape}}</a>
           </span>
         </h5>
       </span>

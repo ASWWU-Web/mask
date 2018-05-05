@@ -1,5 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
@@ -20,32 +21,27 @@ import { SearchableFields } from '../../shared/fields';
 })
 
 export class SearchComponent implements OnInit {
-  typedQuery: string;
+  typedQuery: string = '';
   searchQuery: string;
   allProfiles: any[] = [];
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService) {}
+  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService, private location: Location) {}
 
   ngOnInit() {
-    // get all profile view info
-    var query = this.typedQuery || "";
-    this.rs.searchAll((data) => {
+    //Get the Params from the URL.
+    this.activatedRoute.queryParamMap.subscribe( params => {
+      this.typedQuery = params.get("query");
+      if(this.typedQuery) {
+        this.runSearch();
+      }
+    });
+    this.rs.get('/search/all' , (data) => {
       this.allProfiles = data.results;
-      this.typeaheadResults.push('');
-      // Add all profiles to typeahead options
-      for(let profile of this.allProfiles) {
-        this.typeaheadResults.push(profile['full_name']);
-      }
-      // Add all majors and minors to typeahead options
-      for(let major of SearchableFields['majors']) {
-        this.typeaheadResults.push('majors=' + major);
-      }
-      for(let minor of SearchableFields['minors']) {
-        this.typeaheadResults.push('minors=' + minor);
-      }
+      this.setupTypeAhead();
     }, undefined)
+
   }
 
   //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
@@ -67,10 +63,26 @@ export class SearchComponent implements OnInit {
   // Runs the search
   runSearch() {
     this.searchQuery = this.typedQuery;
+    this.location.replaceState("/search?query=" + this.typedQuery);
   }
 
   // Sets the first result of typeahead to the typed text
   addFirstResult() {
     this.typeaheadResults[0] = this.typedQuery;
+  }
+
+  setupTypeAhead() {
+    this.typeaheadResults.push('');
+    // Add all profiles to typeahead options
+    for(let profile of this.allProfiles) {
+      this.typeaheadResults.push(profile['full_name']);
+    }
+    // Add all majors and minors to typeahead options
+    for(let major of SearchableFields['majors']) {
+      this.typeaheadResults.push('majors=' + major);
+    }
+    for(let minor of SearchableFields['minors']) {
+      this.typeaheadResults.push('minors=' + minor);
+    }
   }
 }

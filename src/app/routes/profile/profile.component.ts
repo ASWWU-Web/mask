@@ -32,10 +32,10 @@ export class ProfileComponent {
     ngOnInit() {
     this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
-        //param name specified in the app.module.ts file.
+        // param name specified in the app.module.ts file.
         this.username = param['username'];
         this.year = param['year'] ? param['year']: CURRENT_YEAR;
-        this.requestService.get("/profile/"+ this.year + "/" + this.username, (data) => this.profile = new ProfileModel(data), undefined);
+        this.requestService.get('/profile/' + this.year + '/' + this.username, (data) => this.profile = new ProfileModel(data), undefined);
       });
     }
 
