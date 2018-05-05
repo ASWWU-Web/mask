@@ -47,3 +47,13 @@ app-root {
   -o-filter: saturate(0%) brightness(10%);
   filter: saturate(0%) brightness(10%);
 }
+
+#aswwuFooter {
+  border-radius:0; 
+  position:fixed; 
+  bottom:0px; width:100%
+}
+
+.footer-link :hover {
+  text-decoration-line: underline !important;
+}
