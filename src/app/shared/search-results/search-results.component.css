@@ -1,3 +1,10 @@
+#searching-text {
+  font-size: 150%;
+}
+
+.no-results-text {
+  font-size: 100%;
+}
 .top-margin {
     margin-top: 40px;
 }

@@ -12,11 +12,14 @@
         <h5 class="info">
           <span *ngFor="let attribute of profile[key].split(','); let last = last;">
             <br>
-            <a class="text-white" [routerLink]="['/search', key + '=' + attribute]">{{attribute + (last ? "" : ",")}}</a>
+            <a class="text-white" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}">{{attribute + (last ? "" : ",") | unescape}}</a>
           </span>
         </h5>
       </span>
       <!--TODO: Don't show fields such as department and office hours for students-->
+    </p>
+    <p>
+      <a *ngIf="!isLoggedOn()" class="btn btn-primary" [href]="getSamlLink()">Login to view full profile</a>
     </p>
   </div>
 </div>

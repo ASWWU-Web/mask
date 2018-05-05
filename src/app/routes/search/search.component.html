@@ -4,16 +4,19 @@
     <div id="search-area" class="parallax-window center-content"
          style="background-image: url('https://static.wixstatic.com/media/de317edf9480039c6c4d425f78b91e1c.png/v1/crop/x_0,y_0,w_330,h_331/de317edf9480039c6c4d425f78b91e1c.png'); background-repeat: repeat;background-size:initial; background-color:#99d7ea;">
 
-        <div class="align-items-center" style="margin-left:auto;margin-right:auto;">
-            <h1 class="text-white text-uppercase text-giant mx-auto">THE MASK</h1>
-            <br>
-            <input [(ngModel)]='query' id="mask-search-query" class="form-control mx-auto" type="text"
-                   placeholder="Find the one...">
-            <br>
+        <div class="align-items-center" (keyup.enter)="runSearch()" style="margin-left:auto;margin-right:auto;">
+          <h1 class="text-white text-uppercase text-giant mx-auto">THE MASK</h1>
+          <br />
+          <div class="row justify-content-center">
+            <input id="mask-search-query" class="search-area-element col form-control" [(ngModel)]='typedQuery' (ngModelChange)="addFirstResult()" (selectItem)="runSearch()" [ngbTypeahead]="typeaheadSearch" [resultFormatter]="typeaheadFormatter" type="text" placeholder="Find the one...">
+            <button id="mask-search-button" class="search-area-element col-1 form-control" (click)="runSearch()"><i class="fas fa-search"></i></button>
+          </div>
+          <div class="row">
             <h3 id="results" class="text-white text-uppercase mx-auto">↓results↓</h3>
+          </div>
         </div>
     </div>
     <div>
-        <search-results [query]='query'></search-results>
+        <search-results [query]='searchQuery'></search-results>
     </div>
 </div>
