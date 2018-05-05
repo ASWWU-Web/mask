@@ -93,7 +93,6 @@ export class RequestService {
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
     this.verify();
-    console.log(uri);
     //If the query is /search/all or /search/CURRRENT_YEAR use cached result.
     if(uri === "/search/all" || uri === "/search/" + CURRENT_YEAR + "/") {
       this.searchAll(afterRequest, catchError);
@@ -143,7 +142,6 @@ export class RequestService {
   getWithSub(uri: string, afterRequest, catchError): Subscription {
     let req = this.createRequest(uri);
     this.verify();
-    console.log(uri);
     //If the query is /search/all or /search/CURRRENT_YEAR use cached result.
     if(uri === "/search/all" || uri === "/search/" + CURRENT_YEAR + "/") {
       return (this.searchAll(afterRequest, catchError));
@@ -160,7 +158,6 @@ export class RequestService {
   //This function returns the results for `/search/all`.
   // It also caches this result.
   searchAll(afterRequest, catchError): Subscription {
-    console.log("searchAllResults", this.searchAllResults)
     if(this.searchAllResults.length == 0) {
       let req = this.createRequest('/search/all');
       this.verify();
