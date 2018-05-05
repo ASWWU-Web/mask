@@ -27,7 +27,6 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
 `,
     styleUrls: ["user-bubble.css"],
     providers: [
-        RequestService,
     ],
 })
 

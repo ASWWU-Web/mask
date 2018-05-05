@@ -11,8 +11,7 @@ import {Subscription} from "rxjs/Subscription";
 @Component({
   selector: "search-results",
   templateUrl: "search-results.component.html",
-  styleUrls: ["search-results.component.css"],
-  providers: [ RequestService ],
+  styleUrls: ["search-results.component.css"]
 })
 
 

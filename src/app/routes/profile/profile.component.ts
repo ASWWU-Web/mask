@@ -18,7 +18,6 @@ import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
       </div>
     `,
     providers: [
-        RequestService
     ],
 })
 

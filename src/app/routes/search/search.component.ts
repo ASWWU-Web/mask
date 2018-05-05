@@ -17,7 +17,7 @@ import { SearchableFields } from '../../shared/fields';
 @Component({
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css'],
-  providers: [ RequestService ],
+  providers: [ ],
 })
 
 export class SearchComponent implements OnInit {
