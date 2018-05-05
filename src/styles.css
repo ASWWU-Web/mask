@@ -1,5 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'https://fonts.googleapis.com/css?family=Dosis:300,400|Pacifico|Raleway:400,700';
+
+:root {
+    --font-1: 'Dosis', sans-serif; /* Headers and big text */
+    --font-2: 'Raleway', sans-serif; /* Generic Text */
+    --font-test: "Brush Script MT", cursive; /* an eye-sore font to make sure it's working */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-1);
+}
+
+* {
+    font-family: var(--font-2);
+}
+
 /* #aswwuFooter {
     border-radius:0;
     position:fixed;

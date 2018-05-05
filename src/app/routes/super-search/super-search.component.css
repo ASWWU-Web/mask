@@ -25,7 +25,7 @@
 }
 
 .mask-search-query {
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-2);
   color: white;
   transition: color .2s, background-color .2s;
   font-weight: bold;
@@ -141,7 +141,7 @@
 }
 
 .year-selector {
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-2);
   color: white;
   border-radius: 0;
   border-width: 3px;
@@ -159,7 +159,7 @@
   border-style: none;
   height: 100% !important;
   color: white;
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-2);
   transition: color .2s, background-color .2s;
   font-weight: bold;
   padding-bottom: 12px;

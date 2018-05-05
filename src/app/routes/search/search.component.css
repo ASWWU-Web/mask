@@ -35,7 +35,7 @@
 }
 
 .search-area-element {
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-2);
   color: white;
   transition: color .2s, background-color .2s;
   font-weight: bold;
