@@ -21,7 +21,7 @@ import { SearchableFields } from '../../shared/fields';
 })
 
 export class SearchComponent implements OnInit {
-  typedQuery: string;
+  typedQuery: string = '';
   searchQuery: string;
   allProfiles: any[] = [];
   typeaheadResults: string[] = [];
@@ -31,9 +31,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     //Get the Params from the URL.
-    this.activatedRoute.params.subscribe((param: any) => {
-      this.searchQuery = param['query'] || '';
-      this.typedQuery = param['query'] || '';
+    this.activatedRoute.queryParamMap.subscribe( params => {
+      this.typedQuery = params.get("query");
+      if(this.typedQuery) {
+        this.runSearch();
+      }
     });
     this.rs.get('/search/all' , (data) => {
       this.allProfiles = data.results;
@@ -61,7 +63,7 @@ export class SearchComponent implements OnInit {
   // Runs the search
   runSearch() {
     this.searchQuery = this.typedQuery;
-    this.location.replaceState("/search/" + this.searchQuery.replace("=", "%3D"));
+    this.location.replaceState("/search?query=" + this.typedQuery);
   }
 
   // Sets the first result of typeahead to the typed text

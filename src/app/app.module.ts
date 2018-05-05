@@ -42,7 +42,11 @@ import { AppComponent } from './app.component';
         component: SearchComponent
       },
       {
-        "path": 'search/:query',
+        "path": 'search',
+        component: SearchComponent
+      },
+      {
+        "path": 'search:query',
         component: SearchComponent
       },
       {
