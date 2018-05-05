@@ -18,7 +18,6 @@ import { CURRENT_YEAR } from '../../config';
     </div>
   `,
     providers: [
-        RequestService,
     ],
 })
 

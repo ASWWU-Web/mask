@@ -9,7 +9,7 @@ import { RequestService } from "../../RequestService/requests";
 
     <div *ngFor="let student of test"> {{student.email | unescape}}</div>
   `,
-  providers: [RequestService, CommonModule]
+  providers: [CommonModule]
 })
 
 export class HomeComponent {

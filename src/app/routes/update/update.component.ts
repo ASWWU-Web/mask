@@ -18,7 +18,6 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../con
   templateUrl: 'update.component.html',
   styleUrls: ['update.component.css'],
   providers: [
-    RequestService,
   ],
 })
 
