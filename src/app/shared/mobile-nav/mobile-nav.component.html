@@ -25,16 +25,16 @@
   <div class="sub-mobile-nav-links">
     <ul class="nav navbar-nav text-xs-center mr-auto mobile-nav-links">
       <li class="nav-item">
-        <a class="smooth" [routerLink]="['/']"> Search</a>
+        <a class="smooth" (click)="pageRoute([''])"> Search</a>
       </li>
       <li class="nav-item">
-        <a class="smooth" [routerLink]="['/super-search/']"> Super Search</a>
+        <a class="smooth" (click)="pageRoute(['super-search'])"> Super Search</a>
       </li>
       <li class="nav-item">
-        <a class="smooth" [routerLink]="['/random']"> Random Profile</a>
+        <a class="smooth" (click)="pageRoute(['random'])"> Random Profile</a>
       </li>
       <li class="nav-item">
-        <a class="smooth" [routerLink]="['/birthdays']"> Birthdays</a>
+        <a class="smooth" (click)="pageRoute(['birthdays'])"> Birthdays</a>
       </li>
     </ul>
   </div>
