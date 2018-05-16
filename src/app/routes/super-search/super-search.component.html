@@ -21,6 +21,7 @@
                     <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control mask-search-query super-search-box col white-box white-box-left-right" type="text" placeholder="super search box...">
 
                     <div class="dropdown-container col white-box white-box-left-right" *ngIf="selectables.hasOwnProperty(criteria[i][0])">
+                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
                         <select class="dropdown col" [(ngModel)]="criteria[i][1]">
                             <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
                         </select>
