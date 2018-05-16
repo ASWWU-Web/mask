@@ -25,7 +25,7 @@ export const SelectFields: Object = {
     personality: ["","ENFJ - Teacher","ENFP - Champion","ENTJ - Field Marshall","ENTP - Inventor","ESFJ - Provider","ESFP - Performer","ESTJ - Supervisor","ESTP - Promoter","INFJ - Counselor","INFP - Healer","INTJ - Mastermind","INTP - Architect","ISFJ - Protector","ISFP - Composer","ISTJ - Inspector","ISTP - Crafter","No personality"],
     gender: ["","Male","Female"],
     class_standing: ["Freshman","Sophomore","Junior","Senior","Super Senior","Undecided"],
-    privacy: ["Public", "Must Be Logged In", "Hidden"]
+    privacy: ["Must Be Logged In", "Public"]
 };
 
 export const SearchableFields: Object = {
