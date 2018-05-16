@@ -162,7 +162,7 @@
   font-family: 'Raleway', sans-serif;
   transition: color .2s, background-color .2s;
   font-weight: bold;
-  padding-bottom: 12px;
+  /* padding-bottom: 12px; */
   border-radius: 0px;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -171,6 +171,10 @@
 .dropdown-container {
   padding: 0px;
   margin: 0px;
-  border-style: none;
+  /* border-style: none; */
   color: white;
+}
+
+option {
+  color:black;
 }
