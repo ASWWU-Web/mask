@@ -13,7 +13,7 @@
                     <div class="dropdown-container col col-md-3" style="border-right-style:none;">
                         <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
                         <select class="form-control dropdown" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
-                            <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
+                            <option *ngFor="let field of fieldsInOrder" value="{{field}}" style="color:black;">{{field.split('_').join(' ')}}</option>
                         </select>
                     </div>
 
