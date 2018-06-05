@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'mobile-nav',
@@ -7,5 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MobileNavComponent {
   isCollapsed: boolean = true;
+
+  constructor(private route: Router) {}
+
+  pageRoute(linkParts: string[]) {
+    this.route.navigate(linkParts);
+    this.isCollapsed = true;
+  }
 
 }
