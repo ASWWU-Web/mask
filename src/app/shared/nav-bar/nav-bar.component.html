@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-inverse navbar-toggleable-sm">
+<!-- <nav class="navbar navbar-dark bg-inverse navbar-toggleable-sm">
   <div class="collapse navbar-collapse">
     <ul id="nav-links" class="nav navbar-nav text-xs-center mr-auto">
       <li class="nav-item">
@@ -44,4 +44,53 @@
   <user-bubble></user-bubble>
 
 
+</nav> -->
+
+<nav class="navbar navbar-dark bg-dark navbar-expand">
+  <div class="collapse navbar-collapse">
+    <ul id="nav-links" class="navbar-nav text-xs-center mr-auto d-none d-md-block">
+      <li class="nav-item">
+        <a class="smooth text-uppercase" href="/"> ASWWU</a>
+      </li>
+      <li>
+        <a class="smooth text-uppercase" href="/mask">Mask</a>
+      </li>
+      <li>
+        <a class="smooth text-uppercase" href="/jobs">Jobs</a>
+      </li>
+      <li>
+        <a class="smooth text-uppercase" href="#upcoming">Upcoming</a>
+      </li>
+      <li class="dropdown">
+        <div ngbDropdown class="d-inline-block">
+          <button ngbDropdownToggle class="btn btn-outline-primary text-uppercase" id="dropdownDepartments" >Departments</button>
+          <div ngbDropdownMenu class="dropdown-menu bg-dark" aria-labelledby="dropdownDepartments">
+            <a href="/pages/administration" class="dropdown-item text-uppercase">Administration</a>
+            <a class="dropdown-item text-uppercase" href="/atlas">Atlas</a>
+            <a href="/pages/collegian" class="dropdown-item text-uppercase">Collegian</a>
+            <a href="/pages/globalservice" class="dropdown-item text-uppercase">Global Service</a>
+            <a href="/pages/outdoors" class="dropdown-item text-uppercase">Outdoors</a>
+            <a href="/pages/photo" class="dropdown-item text-uppercase">Photo</a>
+            <a href="/pages/senate" class="dropdown-item text-uppercase">Senate</a>
+            <a href="/pages/social" class="dropdown-item text-uppercase">Social</a>
+            <a href="/pages/treadshed" class="dropdown-item text-uppercase">Tread Shed</a>
+            <a href="/pages/video" class="dropdown-item text-uppercase smooth">Video</a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <div ngbDropdown class="d-inline-block">
+          <button ngbDropdownToggle class="btn btn-outline-primary text-uppercase" id="dropdownMore" >More</button>
+          <div ngbDropdownMenu class="dropdown-menu bg-dark" aria-labelledby="dropdownMore">
+            <a class="dropdown-item smooth text-uppercase" href="https://class.wallawalla.edu">D2L</a>
+            <a class="dropdown-item smooth text-uppercase" href="https://mywwu.wallawalla.edu">myWWU</a>
+            <a class="dropdown-item text-uppercase smooth" href="https://office365.wallawalla.edu">Office 365 Email</a>
+            <a class="dropdown-item text-uppercase smooth" href="https://wallawalla.edu">WWU Homepage</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <user-bubble></user-bubble>
 </nav>
+<div id="nav-spacer"></div>
