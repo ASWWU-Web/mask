@@ -16,7 +16,7 @@ import { Location } from "@angular/common";
         Made with
         <font color="red">♥</font> by the <a href="https://aswwu.com" target="_blank">ASWWU</a> web team.
         <span style="float:right;">
-          <a href="mailto:ryan.rabello@wallawalla.edu" class="text-white smooth">Report a Problem</a>
+          <a href="mailto:aswwu.webmaster@wallawalla.edu" class="text-white smooth">Report a Problem</a>
           &nbsp;&nbsp;&nbsp;
           <a (click)="scrollToTop()" class="text-white smooth" href="javascript:;">Back to Top</a>
         </span>
