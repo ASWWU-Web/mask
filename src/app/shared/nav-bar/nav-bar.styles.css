@@ -19,7 +19,7 @@
 }
 #nav-links li a {
   font-family: 'Dosis', sans-serif;
-  color: white;
+  color: rgb(252, 248, 248);
   transition: color .2s, background-color .2s;
 }
 #nav-links li a:hover {
