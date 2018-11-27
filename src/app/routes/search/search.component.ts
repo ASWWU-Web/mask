@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe( params => {
       this.typedQuery = params.get("query");
       if(this.typedQuery) {
-        this.runSearch();
+        this.runSearch(this.typedQuery);
       }
     });
     this.rs.get('/search/all' , (data) => {
@@ -61,7 +61,8 @@ export class SearchComponent implements OnInit {
     );
 
   // Runs the search
-  runSearch() {
+  runSearch(item) {
+    this.typedQuery = item.item;
     this.searchQuery = this.typedQuery;
     this.location.replaceState("/search?query=" + this.typedQuery);
   }

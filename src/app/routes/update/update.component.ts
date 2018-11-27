@@ -124,4 +124,8 @@ export class UpdateComponent implements OnInit {
       },
       undefined);
   }
+
+  userStatus(){
+    return this.requestService.authUser.status;
+  }
 }
