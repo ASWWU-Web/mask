@@ -17,9 +17,14 @@
       <div class="row">
         <div *ngFor="let field of section;" class="col-md-6 pb-2 pt-2">
           <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">
+            <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && !(field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
             <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
           </div>
-          <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && !(field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
+          <div *ngIf="(field == 'department' || field == 'office' || field == 'office_hours' ) && (userStatus() == 'Faculty' || userStatus() == 'Staff')" class="text-white text-capitadivze">
+            <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && (field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
+            <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
+          </div>
+          
           <div *ngIf="searchables.hasOwnProperty(field)">
             <input *ngIf="field == 'majors'" id="typeahead-majors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMajors">
             <input *ngIf="field == 'minors'" id="typeahead-minors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMinors">

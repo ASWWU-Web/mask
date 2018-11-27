@@ -11,9 +11,8 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
     selector: 'user-bubble',
     template: `<div *ngIf="isLoggedIn" class="contain">
                     <div ngbDropdown id="bubble-popup">
-                        <button id="bubbleicon" ngbDropdownToggle>
-                            <div *ngIf="(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle">{{profile?.username.charAt(0).toUpperCase()}}</div>
-                            <img *ngIf="!(profile?.photo == 'images/mask_unknown.png' || profile?.photo == 'None' || !profile?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(profile.photo)}}">
+                        <button id="bubbleicon" ngbDropdownToggle style = "background-color: gray; ">
+                            <img (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(profile.photo)}}" onerror="this.style.display='none'">
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bubbleicon">
                             <button class="btn btn-default dropdown-item" [routerLink]="['/profile/'+profile?.username]">View Profile</button>
@@ -27,7 +26,6 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
 `,
     styleUrls: ["user-bubble.css"],
     providers: [
-        RequestService,
     ],
 })
 

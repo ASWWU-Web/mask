@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    
+
     <div id="search-area" class="parallax-window" style="background-image: url('https://static.wixstatic.com/media/de317edf9480039c6c4d425f78b91e1c.png/v1/crop/x_0,y_0,w_330,h_331/de317edf9480039c6c4d425f78b91e1c.png'); background-repeat: repeat;background-size:initial; background-color:#99d7ea;">
         <div class="align-items-center search-criteria" style="margin-left:auto;margin-right:auto;">
             <div class="title">
@@ -10,7 +10,7 @@
                 <br>
                 <div class="form-group row white-box" *ngFor="let pair of criteria; let i = index;" id="search">
                     <!-- FIELDS SELECTOR -->
-                    <div class="dropdown-container col col-md-3" style="border-right-style:none;">
+                    <div class="dropdown-container col col-md-3">
                         <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
                         <select class="form-control dropdown" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
                             <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
@@ -21,6 +21,7 @@
                     <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control mask-search-query super-search-box col white-box white-box-left-right" type="text" placeholder="super search box...">
 
                     <div class="dropdown-container col white-box white-box-left-right" *ngIf="selectables.hasOwnProperty(criteria[i][0])">
+                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
                         <select class="dropdown col" [(ngModel)]="criteria[i][1]">
                             <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
                         </select>
@@ -43,7 +44,8 @@
                         <div class="" style="display:inline-block;position:relative;color:white;">
                             <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
                             <select class="dropdown" style="width:6.5rem;padding:0px" id='entry0' [(ngModel)]="year">
-                                <option value="1718" selected="selected">2017-2018</option>
+                                <option value="1819" selected="selected">2018-2019</option>
+                                <option value="1718">2017-2018</option>
                                 <option value="1617">2016-2017</option>
                                 <option value="1516">2015-2016</option>
                                 <option value="1415">2014-2015</option>
@@ -57,5 +59,5 @@
             </div>
         </div>
     </div>
-    <search-results [query]='query' [year]='year'></search-results>
+    <search-results [query]='serverQuery' [year]='year'></search-results>
 </div>

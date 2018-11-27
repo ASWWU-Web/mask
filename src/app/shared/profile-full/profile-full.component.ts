@@ -4,7 +4,7 @@ import { RequestService } from '../../RequestService/request.service';
 import { ProfileModel } from '../profile.model';
 import { FieldsInOrder } from '../fields';
 import { UnescapePipe } from '../unescape';
-import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
+import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO, AUTH_URI } from '../../config';
 
 @Component({
 	selector: 'profile-full',
@@ -18,6 +18,8 @@ export class ProfileFullComponent {
 
 	fieldsInOrder: string[] = FieldsInOrder;
 
+	constructor(private rs: RequestService) {}
+
 	displayKey(key: string): string { return key.replace(/_/g, ' '); }
 
 	getPhotoLink(url: string) {
@@ -26,6 +28,12 @@ export class ProfileFullComponent {
 		} else {
 			return MEDIA_MD + "/" + DEFAULT_PHOTO;
 		}
+	}
+	isLoggedOn() {
+		return this.rs.isLoggedOn();
+	}
+	getSamlLink() {
+		return AUTH_URI + '?redirectURI=' + window.location.pathname;
 	}
 
 }

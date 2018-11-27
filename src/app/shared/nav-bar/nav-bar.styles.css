@@ -47,3 +47,26 @@
   text-decoration: none;
 
 }
+
+nav {
+  position: relative;
+  width:100%;
+  top: 0 !important;
+  z-index: 3 !important;
+}
+#nav-spacer {
+  display: none;
+}
+
+/* Breakpoint for sticky mobile-nav */
+@media only screen and (max-width: 768px) {
+  nav {
+    position: fixed;
+  }
+  #nav-spacer {
+    position: relative;
+    display: block;
+    height: 50px;
+    width: 100%;
+  }
+}

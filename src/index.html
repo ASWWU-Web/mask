@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>ASWWUMask</title>
+  <title>ASWWU Mask</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,23 +10,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 
+  <meta name=”description” content=”The ASWWU Mask is a searchable directory of the current students and Walla Walla University.“>
+
+  <!-- TODO: generate appropriate @id URl ("@id":"https://aswwu.com",), cannot be changed once set -->
+	<script type='application/ld+json'> {
+      "@context": "http://schema.org/",
+      "@type": "Organization",
+      "name": "ASWWU",
+      "description": "ASWWU is the Associated Students of Walla Walla University and aims to improve the quality of life for all students on the WWU campus.",
+      "logo": "https://aswwu.com/media/images/ASWWU_logo_full.png",
+      "url": "https://aswwu.com",
+      "sameAs":[
+        "https://en.wikipedia.org/wiki/Walla_Walla_University#Student_government",
+        "https://www.facebook.com/aswwu/",
+        "https://vimeo.com/aswwu",
+        "https://www.wallawalla.edu"
+      ]
+    }
+  </script>
+
+
 </head>
 <body>
-  <app-root></app-root>
-  <!-- FOOTER -->
-
-  <div style="position: relative;">
-    <nav id="aswwuFooter" class="navbar navbar-dark bg-inverse">
-      <div class="float-left text-white small">
-        Made with
-        <font color="red">♥</font> by the <a href="https://aswwu.com" target="_blank">ASWWU</a> web team.
-        <span style="float:right;">
-          <a href="mailto:ryan.rabello@wallawalla.edu" class="text-white smooth">Report a Problem</a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="#top" class="text-white smooth">Back to Top</a>
-        </span>
-      </div>
-    </nav>
-  </div>
+  <app-root id="top"></app-root>
 </body>
 </html>

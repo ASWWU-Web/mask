@@ -18,7 +18,6 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../con
   templateUrl: 'update.component.html',
   styleUrls: ['update.component.css'],
   providers: [
-    RequestService,
   ],
 })
 
@@ -124,5 +123,9 @@ export class UpdateComponent implements OnInit {
         this.router.navigate(['/profile',{username: this.fullProfile.username}]);
       },
       undefined);
+  }
+
+  userStatus(){
+    return this.requestService.authUser.status;
   }
 }
