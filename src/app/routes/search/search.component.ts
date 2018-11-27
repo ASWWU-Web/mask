@@ -61,8 +61,10 @@ export class SearchComponent implements OnInit {
     );
 
   // Runs the search
-  runSearch(item) {
-    this.typedQuery = item.item;
+  runSearch(item=null) {
+    if (item != null) {
+      this.typedQuery = item.item;
+    }
     this.searchQuery = this.typedQuery;
     this.location.replaceState("/search?query=" + this.typedQuery);
   }
