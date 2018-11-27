@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { environment } from "../../environments/environment";
+import { CURRENT_YEAR } from "../config";
 import { User } from "./user.model";
 import { Subscription } from "rxjs/Subscription";
 
@@ -16,6 +17,9 @@ import { Subscription } from "rxjs/Subscription";
 export class RequestService {
   authUser: User;
   private isLoggedIn: boolean = false;
+
+  private searchAllResults: any[] = [];
+
 
   private setCurrentUser(user: any): void {
     if (user.hasOwnProperty("wwuid") && user.wwuid) {
@@ -89,12 +93,17 @@ export class RequestService {
   get(uri: string, afterRequest, catchError): void {
     let req = this.createRequest(uri);
     this.verify();
-    this.http.get(req.url, req.options)
-      // .map(res => res.json())
-      .subscribe(
-      data => afterRequest(data),
-      err => (catchError ? catchError(err) : console.error(err))
-      );
+    //If the query is /search/all or /search/CURRRENT_YEAR use cached result.
+    if(uri === "/search/all" || uri === "/search/" + CURRENT_YEAR + "/") {
+      this.searchAll(afterRequest, catchError);
+    } else {
+      this.http.get(req.url, req.options)
+        // .map(res => res.json())
+        .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+        );
+    }
   }
 
   post(uri: string, data: any, afterRequest, catchError): void {
@@ -110,16 +119,11 @@ export class RequestService {
 
   private objToHttpParams(obj): HttpParams {
     let params: HttpParams = new HttpParams();
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        // params = params.set(key, obj[key]);
-        //This code technically works but Angular says that .set() takes
-        //Two strings only.
-        if (typeof obj[key] == "string") {
-          params = params.set(key, obj[key]);
-        } else {
-          params = params.set(key, JSON.stringify(obj[key]));
-        }
+    for (var key of Object.keys(obj)) {
+      if (typeof obj[key] == "string") {
+        params = params.append(key, obj[key].replace(/\;/g, ","));
+      } else {
+        params = params.append(key, JSON.stringify(obj[key]));
       }
     }
     return params;
@@ -128,7 +132,7 @@ export class RequestService {
   postxwww(uri: string, data: any, afterRequest, catchError): void {
     let body = this.objToHttpParams(data);
     this.verify();
-    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded; charset=UTF-8");
     this.http.post(req.url, body.toString(), req.options).subscribe(
         data => afterRequest(data),
         err => (catchError ? catchError(err) : console.error(err))
@@ -138,12 +142,39 @@ export class RequestService {
   getWithSub(uri: string, afterRequest, catchError): Subscription {
     let req = this.createRequest(uri);
     this.verify();
-    let subscription = this.http.get(req.url, req.options)
-      .subscribe(
-        data => afterRequest(data),
-        err => (catchError ? catchError(err) : console.error(err))
-      );
-    return (subscription);
+    //If the query is /search/all or /search/CURRRENT_YEAR use cached result.
+    if(uri === "/search/all" || uri === "/search/" + CURRENT_YEAR + "/") {
+      return (this.searchAll(afterRequest, catchError));
+    } else {
+      let subscription = this.http.get(req.url, req.options)
+        .subscribe(
+          data => afterRequest(data),
+          err => (catchError ? catchError(err) : console.error(err))
+        );
+      return (subscription);
+    }
+  }
+
+  //This function returns the results for `/search/all`.
+  // It also caches this result.
+  searchAll(afterRequest, catchError): Subscription {
+    if(this.searchAllResults.length == 0) {
+      let req = this.createRequest('/search/all');
+      this.verify();
+      let subscription = this.http.get(req.url, req.options)
+        .subscribe(
+          data => {
+            this.searchAllResults = data['results'];
+            afterRequest(data);
+          },
+          err => (catchError ? catchError(err) : console.error(err))
+        );
+      return (subscription);
+    } else {
+      afterRequest({"results": this.searchAllResults});
+      let sub = new Subscription();
+      return (sub);
+    }
   }
   /*
   * Function to view whether or not the user is logged in.

@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RequestService } from './RequestService/requests';
 import { ProfileComponent, HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent } from './shared/shared';
+import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent, UnescapePipe } from './shared/shared';
 import { AppComponent } from './app.component';
 
 
@@ -26,7 +26,10 @@ import { AppComponent } from './app.component';
     BirthdayComponent,
     SuperSearchComponent,
     NavBarComponent,
-    UserBubbleComponent
+    UserBubbleComponent,
+    SubNavBarComponent,
+    MobileNavComponent,
+    UnescapePipe
   ],
   imports: [
     BrowserModule,
@@ -39,11 +42,19 @@ import { AppComponent } from './app.component';
         component: SearchComponent
       },
       {
-        "path": 'search/:query',
+        "path": 'search',
         component: SearchComponent
       },
       {
-        "path":'search',
+        "path": 'search:query',
+        component: SearchComponent
+      },
+      {
+        "path": 'super-search',
+        component: SuperSearchComponent
+      },
+      {
+        "path":'super-search:query',
         component: SuperSearchComponent
       },
       {

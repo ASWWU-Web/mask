@@ -1,0 +1,79 @@
+/* hamburger */
+.mobile-hamburger {
+    background-color:transparent;
+    color:white;
+    font-size: 1.5rem;
+    line-height:1.5rem;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    width:60px;
+    border-radius: 0px;
+    border-style:none;
+    position: fixed;
+    left:0px;
+    top:0px;
+    z-index: 3;
+  }
+
+  .mobile-hamburger:active {
+    color: rgb(70, 70, 70);
+    background-color: white;
+  }
+
+/* mobile-nav-links */
+  .mobile-nav-links li {
+    border-style:none !important;    
+    display: inline-block;
+    float: none;
+    padding: 0 16px 0 16px;
+  }
+  
+  .mobile-nav-links {
+    font-size: 2rem;
+    font-weight: 700;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .mobile-nav-links li a {
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    transition: color .2s, background-color .2s;
+  }
+
+.main-mobile-nav-links {
+    background-color: rgb(70, 70, 70);
+}
+
+.sub-mobile-nav-links {
+    
+}
+
+/* mobile-nav-menu */
+  .mobile-scrollable-menu {
+    z-index: 2;
+    height:100vh;
+    overflow-y: auto;
+    position: fixed;
+  }
+/* mobile nav menu animation */
+.collapse.mobile-scrollable-menu, .collapse.show {
+    display: block !important;
+    transition: all .4s cubic-bezier(0, 1.03, 0.28, 0.99);
+  }
+  
+  .collapse.mobile-scrollable-menu{
+   width: 0;
+  }
+  
+  .collapse.show {
+    width: 100%;
+    /* if we add swiping to open and close the menu this doesn't need to be 100% */
+  }
+  
+  @media only screen and (min-width:768px) {
+    /* for desktop */
+    .desktop-hide {
+      width:0 !important;
+    }
+  }

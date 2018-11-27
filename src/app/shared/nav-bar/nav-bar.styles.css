@@ -29,8 +29,11 @@
 .navbar {
   border-radius: 0;
 }
-
-#dropdownMenu1 {
+.dropdown {
+  /* Sub navbar has z-index: 1030 and these should be above that. */
+  z-index: 1050;
+}
+.dropdown div button {
   all: initial;
   border:0px;
   font-family: 'Dosis', sans-serif;
@@ -38,9 +41,32 @@
   transition: color .2s, background-color .2s;
 }
 
-#dropdownMenu1 :hover {
+.dropdown div button :hover {
   all: initial;
   color: grey;
   text-decoration: none;
 
+}
+
+nav {
+  position: relative;
+  width:100%;
+  top: 0 !important;
+  z-index: 3 !important;
+}
+#nav-spacer {
+  display: none;
+}
+
+/* Breakpoint for sticky mobile-nav */
+@media only screen and (max-width: 768px) {
+  nav {
+    position: fixed;
+  }
+  #nav-spacer {
+    position: relative;
+    display: block;
+    height: 50px;
+    width: 100%;
+  }
 }

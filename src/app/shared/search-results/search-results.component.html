@@ -1,22 +1,28 @@
 <div class="container top-margin">
-    <div class="row">
-        <div class="top-margin" *ngFor="let result of shownResults" class="columns col-6 col-md-4 col-lg-3">
-            <profile-sm [searchResult]='result' [year]="year" class=""></profile-sm>
-        </div>
+  <div class="row">
+    <div class="top-margin" *ngFor="let result of shownResults" class="columns col-6 col-md-4 col-lg-3">
+      <profile-sm [searchResult]='result' [year]="year" class=""></profile-sm>
     </div>
-    <div style="padding-bottom:50px;" class="row">
-        <div *ngIf="!(shown >= results.length)" class="col d-flex justify-content-center">
-            <button (click)="showMore()" class="btn btn-primary">Show More</button>
-        </div>
-        <div *ngIf="results.length == 0 && noResultsPrompt == undefined" class="col d-flex justify-content-center">
-            <p class="text-white" style="font-size: 100%">No results found...</p>
-            <p style="font-size: 100%">
-                <a [routerLink]="['/search/']">Super Search?</a>
-            </p>
-        </div>
-        <div *ngIf="results.length == 0 && noResultsPrompt != undefined"
-             class="text-white col d-flex justify-content-{{noResultsJust}}">
-            {{noResultsPrompt}}
-        </div>
+  </div>
+  <!-- Searching... -->
+  <div *ngIf="searching" style="padding-bottom:50px;" class="row">
+    <div class="col d-flex justify-content-center">
+      <p id="searching-text" class="text-white" style="font-size: 150%">Searching...</p>
     </div>
+  </div>
+  <!-- Not searching -->
+  <div *ngIf="!searching" style="padding-bottom:50px;" class="row">
+    <div *ngIf="!(shown >= results.length)" class="col d-flex justify-content-center">
+      <button (click)="showMore()" class="btn btn-primary">Show More</button>
+    </div>
+    <div *ngIf="results.length == 0 && noResultsPrompt == undefined" class="col d-flex justify-content-center">
+      <p class="text-white no-results-text" style="font-size: 100%">No results found...</p>
+      <p class="no-results-text">
+        <a [routerLink]="['/search/']">Super Search?</a>
+      </p>
+    </div>
+    <div *ngIf="results.length == 0 && noResultsPrompt != undefined" class="text-white col d-flex justify-content-{{noResultsJust}}">
+      {{noResultsPrompt}}
+    </div>
+  </div>
 </div>
