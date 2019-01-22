@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe( params => {
       this.typedQuery = params.get("query");
       if(this.typedQuery) {
-        this.runSearch(this.typedQuery);
+        this.runSearch();
       }
     });
     this.rs.get('/search/all' , (data) => {
