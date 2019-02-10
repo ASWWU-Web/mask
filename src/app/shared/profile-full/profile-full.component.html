@@ -8,11 +8,13 @@
     <p *ngFor="let key of fieldsInOrder">
       <span *ngIf="profile[key]">
         <i class="text-muted text-capitalize">{{displayKey(key)}}</i>
-        <!-- TODO: Add some code here that will generate appropriate links for phone and email etc... -->
         <h5 class="info">
           <span *ngFor="let attribute of profile[key].split(','); let last = last;">
             <br>
-            <a class="text-white" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}">{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a *ngIf="key == 'phone'" class="text-white" href='tel:{{attribute + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a *ngIf="key == 'email'" class="text-white" href='mailto:{{attribute + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a *ngIf="key == 'website'" class="text-white" href='{{generateWebsiteLink(attribute) + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a *ngIf="key != 'phone' && key != 'email' && key != 'website'" class="text-white" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}">{{attribute + (last ? "" : ",") | unescape}}</a>
           </span>
         </h5>
       </span>

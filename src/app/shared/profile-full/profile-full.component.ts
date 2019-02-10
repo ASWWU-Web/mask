@@ -35,5 +35,10 @@ export class ProfileFullComponent {
 	getSamlLink() {
 		return AUTH_URI + '?redirectURI=' + window.location.pathname;
 	}
-
+	generateWebsiteLink(website: string) {
+		if (!website.startsWith('http')) {
+			return '//' + website;
+		}
+		return website;
+	}
 }
