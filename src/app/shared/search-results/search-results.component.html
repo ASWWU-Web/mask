@@ -16,9 +16,9 @@
       <button (click)="showMore()" class="btn btn-primary">Show More</button>
     </div>
     <div *ngIf="results.length == 0 && noResultsPrompt == undefined" class="col d-flex justify-content-center">
-      <p class="text-white no-results-text" style="font-size: 100%">No results found...</p>
+      <p class="text-white no-results-text" style="font-size: 100%">No results found... </p>
       <p class="no-results-text">
-        <a [routerLink]="['/search/']">Super Search?</a>
+        <a [routerLink]="['/super-search/']">Super Search?</a>
       </p>
     </div>
     <div *ngIf="results.length == 0 && noResultsPrompt != undefined" class="text-white col d-flex justify-content-{{noResultsJust}}">
