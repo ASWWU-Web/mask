@@ -101,7 +101,6 @@ export class UpdateComponent implements OnInit {
       let key: string;
       for (key in data) {
         if (data[key]) {
-          data[key] = decodeURIComponent(data[key]);
           let div = document.createElement('div');
           div.innerHTML = data[key];
           data[key] = div.firstChild.nodeValue;

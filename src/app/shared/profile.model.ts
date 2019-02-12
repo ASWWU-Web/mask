@@ -44,7 +44,7 @@ export class ProfileModel {
         if (typeof data == "string") data = JSON.parse(data);
         for (var key in data) {
             if (data[key].length > 0 && data[key] != "None") {
-                this[key] = decodeURIComponent(data[key].trim());
+                this[key] = data[key].trim(); 
             }
         }
         if ((!this.full_name || this.full_name == '') && this.username) {
