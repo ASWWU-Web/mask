@@ -20,6 +20,9 @@ export class ProfileSmComponent {
 		} else {
 			return MEDIA_SM + "/" + DEFAULT_PHOTO;
 		}
-	}
+  }
 
+  open(): void {
+
+  }
 }

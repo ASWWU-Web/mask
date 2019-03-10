@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RequestService } from './RequestService/requests';
 import { ProfileComponent, HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent, UnescapePipe } from './shared/shared';
+import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent, UnescapePipe, ProfileModalComponent, ProfileModalContentComponent } from './shared/shared';
 import { AppComponent } from './app.component';
 
 
@@ -29,7 +29,10 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SubNavBarComponent,
     MobileNavComponent,
-    UnescapePipe
+    UnescapePipe,
+    ProfileModalComponent,
+    ProfileModalContentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,10 @@ import { AppComponent } from './app.component';
   providers: [
   	RequestService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ProfileModalComponent,
+    ProfileModalContentComponent
+  ]
 })
 export class AppModule { }

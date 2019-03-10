@@ -1,4 +1,20 @@
-<a *ngIf="this.year == this.current_year" [routerLink]="['/profile', searchResult.username, this.year]">
+<a *ngIf="this.year == this.current_year" (click)="ballotModal.open(searchResult.username, this.year)">
+  <div class="circle">
+    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+  </div>
+  <h4 class=" text-white">{{searchResult.full_name | unescape}}</h4>
+</a>
+
+<a *ngIf="this.year != this.current_year" (click)="ballotModal.open(searchResult.username, (this.year) ? this.year: this.current_year)">
+  <div class="circle">
+    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+  </div>
+  <h4 class=" text-white" id="full-name">{{searchResult.full_name | unescape}}</h4>
+</a>
+
+<app-profile-modal #ballotModal></app-profile-modal>
+
+<!-- <a *ngIf="this.year == this.current_year" [routerLink]="['/profile', searchResult.username, this.year]">
   <div class="circle">
     <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
   </div>
@@ -10,4 +26,4 @@
     <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
   </div>
   <h4 class=" text-white" id="full-name">{{searchResult.full_name | unescape}}</h4>
-</a>
+</a> -->
