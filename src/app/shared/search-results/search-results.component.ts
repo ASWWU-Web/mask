@@ -1,12 +1,11 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable , Subscription} from 'rxjs';
 
 import { RequestService } from '../../RequestService/request.service';
 import { ProfileSmComponent } from '../shared';
 import { CURRENT_YEAR } from '../../config';
-import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: "search-results",

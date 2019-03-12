@@ -3,10 +3,8 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { RequestService } from '../../RequestService/requests';
 import { ProfileModel } from '../../shared/profile.model';
@@ -53,13 +51,13 @@ export class UpdateComponent implements OnInit {
 
   // Typeahead major/minor functions
   searchMajors = (text$: Observable<string>) =>
-    text$.debounceTime(200).distinctUntilChanged().map(
+    text$.pipe(debounceTime(200), distinctUntilChanged(), map(
       term => term.length < 2 ? [] : this.searchables['majors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
   searchMinors = (text$: Observable<string>) =>
-    text$.debounceTime(200).distinctUntilChanged().map(
+    text$.pipe(debounceTime(200), distinctUntilChanged(), map(
       term => term.length < 2 ? [] : this.searchables['minors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
 
   // Because the `requestService` is private it cannot be accessed by the
   // template. Hence the reason for this function. :(

@@ -1,13 +1,11 @@
-import { Subscription } from 'rxjs';
+import { Subscription ,  Observable } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+
 
 import { RequestService } from '../../RequestService/request.service';
 import { SearchResultsComponent } from '../../shared/shared';
@@ -56,9 +54,9 @@ export class SearchComponent implements OnInit {
 
   // Calculate the possible typeaheads
   typeaheadSearch = (text$: Observable<string>) =>
-    text$.distinctUntilChanged().map(
+    text$.pipe(distinctUntilChanged(), map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
 
   // Runs the search
   runSearch(item=null) {
