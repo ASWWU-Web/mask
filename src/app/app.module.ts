@@ -5,10 +5,37 @@ import {HttpClientModule} from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// shared-ng components
+import {
+  SharedNgContainerComponent,
+  FooterComponent,
+  NavBarComponent,
+  MobileNavComponent,
+  UserBubbleComponent,
+  HeaderComponent
+} from '../shared-ng/components/components';
+import {
+  RequestService,
+  HermesService
+} from '../shared-ng/services/services';
 
-import { RequestService } from './RequestService/requests';
-import { ProfileComponent, HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent, UnescapePipe } from './shared/shared';
+// project components
+import {
+  ProfileComponent,
+  HomeComponent,
+  SearchComponent,
+  UpdateComponent,
+  RandomComponent,
+  BirthdayComponent,
+  SuperSearchComponent
+} from './routes/routes';
+import {
+  ProfileFullComponent,
+  ProfileSmComponent,
+  SearchResultsComponent,
+  SubNavBarComponent,
+  UnescapePipe
+} from './shared/shared';
 import { AppComponent } from './app.component';
 
 
@@ -29,7 +56,13 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SubNavBarComponent,
     MobileNavComponent,
-    UnescapePipe
+    UnescapePipe,
+    SharedNgContainerComponent,
+    FooterComponent,
+    NavBarComponent,
+    MobileNavComponent,
+    UserBubbleComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +117,8 @@ import { AppComponent } from './app.component';
     ])
   ],
   providers: [
-  	RequestService
+    RequestService,
+    HermesService
   ],
   bootstrap: [AppComponent]
 })
