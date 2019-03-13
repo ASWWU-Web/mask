@@ -15,9 +15,11 @@ import {
   HeaderComponent
 } from '../shared-ng/components/components';
 import {
-  RequestService,
+  // RequestService,
   HermesService
 } from '../shared-ng/services/services';
+// TODO: implement the actual request service
+import { RequestService } from '../app/RequestService/request.service';
 
 // project components
 import {
