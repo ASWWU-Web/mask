@@ -8,7 +8,7 @@ import { HttpClientModule, HttpClient, HttpParams, HttpHeaders } from '@angular/
 import { Observable ,  Subscription } from 'rxjs';
 
 
-import { environment } from "../../environments/environment";
+import { environment } from '../../shared-ng/environments/environment';
 import { CURRENT_YEAR } from "../config";
 import { User } from "./user.model";
 

@@ -1,6 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Routes, Router } from "@angular/router";
 import { Location } from "@angular/common";
+import { HermesService } from '../shared-ng/services/services';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   constructor(
       private loc: Location,
       private router: Router,
+      private hermes: HermesService
   ) {
       this.router.events.subscribe(() => {
         this.fade = 2;
@@ -23,6 +25,7 @@ export class AppComponent {
         else if(this.loc.path().search('update') != -1) this.fade = 1;
         else if(this.loc.path().search('random') != -1) this.fade = 1;
     });
+    this.hermes.sendHeaderTitle('Mask');
   }
 
   scrollToTop() {
