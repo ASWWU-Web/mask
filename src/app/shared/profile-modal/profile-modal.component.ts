@@ -52,7 +52,7 @@ export class ProfileModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  open(username, year): void {
+  open(username: string, year: string): void {
     // save the modal reference so we can close it
     this.modal = this.modalService.open(ProfileModalContentComponent, {size: 'lg'});
     // pass data to the modal inputs
