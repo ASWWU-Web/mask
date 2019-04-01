@@ -14,8 +14,8 @@ export class ProfileSmComponent {
   @Input('year') year: String = undefined;
   current_year = CURRENT_YEAR;
   // Photourl to link funciton returns proper url and BLANK photo if photo == "None"
-  getPhotoLink(url: string){
-    if (url && url != 'None'){
+  getPhotoLink(url: string) {
+    if (url && url != 'None') {
       return MEDIA_SM + '/' + url;
     } else {
       return MEDIA_SM + '/' + DEFAULT_PHOTO;

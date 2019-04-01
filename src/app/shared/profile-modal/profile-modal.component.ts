@@ -24,9 +24,10 @@ export class ProfileModalContentComponent implements OnInit {
   ngOnInit() {
     this.year = this.year ? this.year : CURRENT_YEAR;
     const url = '/profile/' + this.year + '/' + this.username;
+    const display_url = '/profile/' + this.username + '/' + this.year;  // URL to display
     this.rs.get(url, (data) => this.profile = new ProfileModel(data), undefined);
     const stateObj = { hello: 'there '};
-    history.pushState(stateObj, 'Profile View', url);
+    history.pushState(stateObj, 'Profile View', display_url);
   }
 }
 

@@ -14,7 +14,7 @@
             <a *ngIf="key == 'phone'" class="text-black" href='tel:{{attribute + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
             <a *ngIf="key == 'email'" class="text-black" href='mailto:{{attribute + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
             <a *ngIf="key == 'website'" class="text-black" href='{{generateWebsiteLink(attribute) + (last ? "" : ",") | unescape}}'>{{attribute + (last ? "" : ",") | unescape}}</a>
-            <a *ngIf="key != 'phone' && key != 'email' && key != 'website'" class="text-black" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}">{{attribute + (last ? "" : ",") | unescape}}</a>
+            <a *ngIf="key != 'phone' && key != 'email' && key != 'website'" class="text-black" [routerLink]="['/search']" [queryParams]="{'query': key + '=' + attribute}" (click)="activeModal.dismiss()">{{attribute + (last ? "" : ",") | unescape}}</a>
           </span>
         </h5>
       </span>
