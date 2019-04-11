@@ -36,7 +36,9 @@ import {
   ProfileSmComponent,
   SearchResultsComponent,
   SubNavBarComponent,
-  UnescapePipe
+  UnescapePipe,
+  ProfileModalComponent,
+  ProfileModalContentComponent
 } from './shared/shared';
 import { AppComponent } from './app.component';
 
@@ -64,7 +66,10 @@ import { AppComponent } from './app.component';
     NavBarComponent,
     MobileNavComponent,
     UserBubbleComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileModalComponent,
+    ProfileModalContentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -122,6 +127,10 @@ import { AppComponent } from './app.component';
     RequestService,
     HermesService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ProfileModalComponent,
+    ProfileModalContentComponent
+  ]
 })
 export class AppModule { }
