@@ -37,7 +37,7 @@ export class RequestService {
   * Also returns the user object to the callback function.
   */
   verify(cb?: any): void {
-    if (document.cookie.search("token=") !== -1) {
+    if (document.cookie.search("loggedin=") !== -1) {
       this.verifyGet("verify", data => {
         //Log in the user
         let user = data.user || null;
