@@ -69,17 +69,14 @@ export class UpdateComponent implements OnInit {
 
   // This function gets the url's of all the possible photos for a user from the endpoint on the server.
   getPhotos(): any {
-    var SEARCH_YEARS = 3;  // SEARCH_YEARS is the number of years to get profile photo options from.
     this.possiblePhotos = [DEFAULT_PHOTO];
-    this.searchYears = ARCHIVE_YEARS.slice(0, SEARCH_YEARS);
-    this.searchYears.unshift(CURRENT_YEAR);
     this.justClicked = this.profile.photo;
-    // display profile photo options
-    for (let YEAR of this.searchYears) {
-      this.requestService.get(MEDIA_URI + "/listProfilePhotos.php?wwuid=" + this.fullProfile.wwuid + "&year=" + YEAR, (photos) => {
-        this.possiblePhotos = this.possiblePhotos.concat(photos)
-      }, undefined);
-    }
+    this.requestService.get('/update/list_photos', (data: {photos: string[]}) => {
+      this.possiblePhotos = this.possiblePhotos.concat(data.photos);
+    },
+    (err) => {
+      undefined
+    });
   }
 
   // Function to change which picture is set for a user. For use in the html to select a picture.
