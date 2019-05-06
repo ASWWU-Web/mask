@@ -2,22 +2,16 @@ import { Subscription ,  Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CURRENT_YEAR } from '../../config';
-
-
-import { RequestService } from '../../RequestService/request.service';
-import { SearchResultsComponent } from '../../shared/shared';
+import { MaskRequestService } from '../../../shared-ng/services/services'
 import { SearchableFields } from '../../shared/fields';
+import { Profile } from '../../../shared-ng/interfaces/mask';
 
 
 @Component({
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css'],
-  providers: [ ],
 })
-
 export class SearchComponent implements OnInit {
   typedQuery: string = '';
   searchQuery: string;
@@ -25,7 +19,7 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService, private location: Location) {}
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location) {}
 
   ngOnInit() {
     //Get the Params from the URL.
@@ -35,11 +29,15 @@ export class SearchComponent implements OnInit {
         this.runSearch();
       }
     });
-    this.rs.get('/search/all' , (data) => {
-      this.allProfiles = data.results;
-      this.setupTypeAhead();
-    }, undefined)
-
+    const profileObservable = this.mrs.listProfile();
+    profileObservable.subscribe(
+      (results: Profile[]) => {
+        this.allProfiles = results;
+        this.setupTypeAhead();
+      }, (err) => {
+        window.alert('Unable to fetch data for profiles' + err.error.status);
+      }
+    );
   }
 
   //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { RequestService } from "../../RequestService/requests";
+import { MaskRequestService, AuthService } from '../../../shared-ng/services/services';
+import { Profile } from '../../../shared-ng/interfaces/interfaces'
+
 
 @Component({
   template:  `
@@ -16,10 +18,19 @@ export class HomeComponent {
 
   //For testing purposes.
   test: any;
-  constructor(requestService: RequestService) {
+  constructor(private mrs: MaskRequestService, private as: AuthService) {
     //requestService.test().then((data: any) => {this.test = data});
-    requestService.searchAll((data) => {this.test = data.results},null);
+    const profileObservable = this.mrs.listProfile();
+    profileObservable.subscribe(
+      (results: Profile[]) => {
+        this.test = results;
+      }, (err) => {
+        window.alert('Unable to fetch data for profiles' + err.error.status);
+      }
+    );
+
     // requestService.post('/login', 'hello', (data) => {console.log("postData",data);},null);
-    requestService.verify((data) => {console.log(data);});
+
+    this.as.authenticateUser().subscribe((data) => {console.log(data)});
   }
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-port": "ng serve --host 0.0.0.0   --port 4200 --disable-host-check",
     "build": "ng build -prod --base-href /mask --deploy-url /mask",
     "test": "ng test",
     "lint": "ng lint",

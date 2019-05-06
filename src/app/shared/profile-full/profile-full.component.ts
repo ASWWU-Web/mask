@@ -1,10 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { RequestService } from '../../RequestService/request.service';
-
 import { ProfileModel } from '../profile.model';
 import { FieldsInOrder } from '../fields';
-import { UnescapePipe } from '../unescape';
-import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO, AUTH_URI } from '../../config';
+import { MEDIA_MD, DEFAULT_PHOTO, AUTH_URI } from '../../config';
+import { AuthService } from '../../../shared-ng/services/services'
 
 @Component({
   selector: 'profile-full',
@@ -18,7 +16,7 @@ export class ProfileFullComponent {
 
   fieldsInOrder: string[] = FieldsInOrder;
 
-  constructor(private rs: RequestService) {}
+  constructor(private as: AuthService ) {}
 
   displayKey(key: string): string { return key.replace(/_/g, ' '); }
 
@@ -30,7 +28,7 @@ export class ProfileFullComponent {
     }
   }
   isLoggedOn() {
-    return this.rs.isLoggedOn();
+    return this.as.isLoggedIn();
   }
   getSamlLink() {
     return AUTH_URI + '?redirectURI=' + window.location.pathname;

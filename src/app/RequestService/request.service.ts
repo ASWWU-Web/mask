@@ -184,5 +184,4 @@ export class RequestService {
     //Returns true if authUser is defined, false otherwise
     return this.isLoggedIn;
   }
-
 }

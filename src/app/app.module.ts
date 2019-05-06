@@ -15,11 +15,11 @@ import {
   HeaderComponent
 } from '../shared-ng/components/components';
 import {
-  // RequestService,
+  AuthService,
+  RequestService,
+  MaskRequestService,
   HermesService
 } from '../shared-ng/services/services';
-// TODO: implement the actual request service
-import { RequestService } from '../app/RequestService/request.service';
 
 // project components
 import {
@@ -124,7 +124,9 @@ import { AppComponent } from './app.component';
     ])
   ],
   providers: [
+    AuthService,
     RequestService,
+    MaskRequestService,
     HermesService
   ],
   bootstrap: [AppComponent],

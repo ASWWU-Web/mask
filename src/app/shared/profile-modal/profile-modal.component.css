@@ -1,0 +1,8 @@
+@media screen and (min-width: 800px) {
+  .modal-adaptive .modal-lg {
+      width: 80%;
+      height: 90%;
+      max-width: calc(80%);
+      max-height: calc(90%);
+  }
+}

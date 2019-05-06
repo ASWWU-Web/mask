@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { Observable , Subscription} from 'rxjs';
 
-import { RequestService } from '../../RequestService/request.service';
+import { MaskRequestService } from '../../../shared-ng/services/services';
 import { ProfileSmComponent } from '../shared';
 import { CURRENT_YEAR } from '../../config';
+import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: "search-results",
@@ -16,17 +17,17 @@ import { CURRENT_YEAR } from '../../config';
 
 export class SearchResultsComponent {
   @Input() query: string;
-  @Input('year') year: String = undefined;
+  @Input('year') year: string = undefined;
   @Input() noResultsPrompt: string;
   @Input() noResultsJust: string = "center";
 
-  results: any[] = [];
+  results: Profile[] = [];
   shownResults: any[] = [];
   shown: number = 0;
   sub: Subscription = null;
   searching: boolean = false;
 
-  constructor (private rs: RequestService) {}
+  constructor (private mrs: MaskRequestService) {}
 
   ngOnChanges() {
     this.shownResults = [];
@@ -49,29 +50,31 @@ export class SearchResultsComponent {
     }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
+
+      const maskObservable = this.mrs.listProfileFilter(CURRENT_YEAR, query);
+      maskObservable.subscribe((data: Profile[]) => {
+        this.results = data.sort((p1,p2) => {
+          if (p1.views == 0)
             p1.views = 0;
-          if (p2.views == "None")
+          if (p2.views == 0)
             p2.views = 0;
           return p2.views - p1.views;
         });
         this.showMore();
-      }, undefined)
-
+      }, undefined);
     }
     else {
-      this.rs.get('/search/'+ this.year + "/" + query, (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
+      const maskObservable = this.mrs.listProfileFilter(this.year, query);
+      maskObservable.subscribe((data: Profile[]) => {
+        this.results = data.sort((p1,p2) => {
+          if (p1.views == null)
             p1.views = 0;
-          if (p2.views == "None")
+          if (p2.views == null)
             p2.views = 0;
           return p2.views - p1.views;
-        })
+        });
         this.showMore();
-      }, undefined)
+      }, undefined);
     }
   }
 
