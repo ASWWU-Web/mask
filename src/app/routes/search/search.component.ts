@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MaskRequestService } from '../../../shared-ng/services/services'
 import { SearchableFields } from '../../shared/fields';
-import { Profile } from '../../../shared-ng/interfaces/mask';
+import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
 
 @Component({

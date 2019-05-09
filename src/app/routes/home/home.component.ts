@@ -19,7 +19,6 @@ export class HomeComponent {
   //For testing purposes.
   test: any;
   constructor(private mrs: MaskRequestService, private as: AuthService) {
-    //requestService.test().then((data: any) => {this.test = data});
     const profileObservable = this.mrs.listProfile();
     profileObservable.subscribe(
       (results: Profile[]) => {
@@ -28,8 +27,6 @@ export class HomeComponent {
         window.alert('Unable to fetch data for profiles' + err.error.status);
       }
     );
-
-    // requestService.post('/login', 'hello', (data) => {console.log("postData",data);},null);
 
     this.as.authenticateUser().subscribe((data) => {console.log(data)});
   }

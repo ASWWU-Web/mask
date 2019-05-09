@@ -30,7 +30,7 @@ export class ProfileComponent {
     constructor(private mrs: MaskRequestService, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-    this.subscription = this.activatedRoute.params.subscribe(
+      this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
         // param name specified in the app.module.ts file.
         this.username = param['username'];
@@ -39,7 +39,6 @@ export class ProfileComponent {
         profileObservable.subscribe((data) => {
           this.profile = new ProfileModel(data);
         }, undefined);
-        // this.requestService.get('/profile/' + this.year + '/' + this.username, (data) => this.profile = new ProfileModel(data), undefined);
       });
     }
 
