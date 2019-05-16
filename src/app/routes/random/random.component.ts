@@ -2,8 +2,7 @@
  * Created by ethan on 2/21/17.
  */
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from '../../RequestService/requests';
-
+import { MaskRequestService } from '../../../shared-ng/services/services';
 import { ProfileModel } from '../../shared/shared';
 import { CURRENT_YEAR } from '../../config';
 
@@ -25,13 +24,14 @@ export class RandomComponent implements OnInit {
     allProfiles: any;
     selectedProfile: any;
 
-    constructor(private requestService: RequestService) {}
+    constructor(private mrs: MaskRequestService) {}
 
     ngOnInit() {
-        this.requestService.searchAll((data) => {
-            this.allProfiles = data['results'];
-            this.getRandom();
-        }, undefined);
+      const profileObservable = this.mrs.listProfile();
+      profileObservable.subscribe((data)=> {
+        this.allProfiles = data;
+        this.getRandom();
+      }, undefined);
     }
 
     getRandom(): any {
@@ -39,7 +39,10 @@ export class RandomComponent implements OnInit {
         while(this.selectedProfile['photo'] == "images/mask_unknown.png" || this.selectedProfile['photo'] == "None" || !this.selectedProfile['photo']) {
             this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
         }
-        this.requestService.get("/profile/"+ CURRENT_YEAR + "/" + this.selectedProfile['username'], (data) => this.selectedProfile = new ProfileModel(data), undefined);
+        const profileObservable = this.mrs.readProfile(CURRENT_YEAR, this.selectedProfile['username']);
+        profileObservable.subscribe(data => {
+          this.selectedProfile = new ProfileModel(data);
+        }, undefined);
     }
 
 }
