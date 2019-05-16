@@ -50,8 +50,7 @@ export class SearchResultsComponent {
     }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      const filterParams = {'year': CURRENT_YEAR, 'searchQuery': query}
-      const maskObservable = this.mrs.listProfile(filterParams);
+      const maskObservable = this.mrs.listProfile(CURRENT_YEAR, query);
       maskObservable.subscribe((data: Profile[]) => {
         this.results = data.sort((p1,p2) => {
           if (p1.views == 0)
@@ -64,8 +63,7 @@ export class SearchResultsComponent {
       }, undefined);
     }
     else {
-      const filterParams = {'year': this.year, 'searchQuery': query};
-      const maskObservable = this.mrs.listProfile(filterParams);
+      const maskObservable = this.mrs.listProfile(this.year, query);
       maskObservable.subscribe((data: Profile[]) => {
         this.results = data.sort((p1,p2) => {
           if (p1.views == null)

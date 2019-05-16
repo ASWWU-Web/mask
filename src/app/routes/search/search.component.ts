@@ -31,8 +31,8 @@ export class SearchComponent implements OnInit {
     });
     const profileObservable = this.mrs.listProfile();
     profileObservable.subscribe(
-      (results: Profile[]) => {
-        this.allProfiles = results;
+      (data: Profile[]) => {
+        this.allProfiles = data;
         this.setupTypeAhead();
       }, (err) => {
         window.alert('Unable to fetch data for profiles' + err.error.status);
@@ -73,6 +73,7 @@ export class SearchComponent implements OnInit {
   setupTypeAhead() {
     this.typeaheadResults.push('');
     // Add all profiles to typeahead options
+
     for(let profile of this.allProfiles) {
       this.typeaheadResults.push(profile['full_name']);
     }
