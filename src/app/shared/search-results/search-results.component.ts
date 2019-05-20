@@ -53,11 +53,13 @@ export class SearchResultsComponent {
       const maskObservable = this.mrs.listProfile(CURRENT_YEAR, query);
       maskObservable.subscribe((data: Profile[]) => {
         this.results = data.sort((p1,p2) => {
-          if (p1.views == 0)
-            p1.views = 0;
-          if (p2.views == 0)
-            p2.views = 0;
-          return p2.views - p1.views;
+          let views1: number = 0, views2: number = 0;
+          if (typeof p1.views !== 'string')
+            views1 = p1.views;
+          if (typeof p2.views !== 'string')
+            views2 = p2.views;
+
+          return views2 - views1;
         });
         this.showMore();
       }, undefined);
@@ -66,11 +68,13 @@ export class SearchResultsComponent {
       const maskObservable = this.mrs.listProfile(this.year, query);
       maskObservable.subscribe((data: Profile[]) => {
         this.results = data.sort((p1,p2) => {
-          if (p1.views == null)
-            p1.views = 0;
-          if (p2.views == null)
-            p2.views = 0;
-          return p2.views - p1.views;
+          let views1: number = 0, views2: number = 0;
+          if (typeof p1.views !== 'string')
+            views1 = p1.views;
+          if (typeof p2.views !== 'string')
+            views2 = p2.views;
+
+            return views2 - views1;
         });
         this.showMore();
       }, undefined);

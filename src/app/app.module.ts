@@ -24,7 +24,6 @@ import {
 // project components
 import {
   ProfileComponent,
-  HomeComponent,
   SearchComponent,
   UpdateComponent,
   RandomComponent,
@@ -46,7 +45,6 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SearchComponent,
     ProfileComponent,
     ProfileFullComponent,
