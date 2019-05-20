@@ -34,10 +34,7 @@ export class SearchComponent implements OnInit {
       (data: Profile[]) => {
         this.allProfiles = data;
         this.setupTypeAhead();
-      }, (err) => {
-        window.alert('Unable to fetch data for profiles' + err.error.status);
-      }
-    );
+      }, (err) => {});
   }
 
   //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
