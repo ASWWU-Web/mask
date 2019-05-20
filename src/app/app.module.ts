@@ -5,17 +5,46 @@ import {HttpClientModule} from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// shared-ng components
+import {
+  SharedNgContainerComponent,
+  FooterComponent,
+  NavBarComponent,
+  MobileNavComponent,
+  UserBubbleComponent,
+  HeaderComponent
+} from '../shared-ng/components/components';
+import {
+  AuthService,
+  RequestService,
+  MaskRequestService,
+  HermesService
+} from '../shared-ng/services/services';
 
-import { RequestService } from './RequestService/requests';
-import { ProfileComponent, HomeComponent, SearchComponent, UpdateComponent, RandomComponent, BirthdayComponent, SuperSearchComponent } from './routes/routes';
-import { ProfileFullComponent, ProfileSmComponent, SearchResultsComponent, NavBarComponent, UserBubbleComponent, SubNavBarComponent, MobileNavComponent, UnescapePipe } from './shared/shared';
+// project components
+import {
+  ProfileComponent,
+  SearchComponent,
+  UpdateComponent,
+  RandomComponent,
+  BirthdayComponent,
+  SuperSearchComponent
+} from './routes/routes';
+import {
+  ProfileFullComponent,
+  ProfileSmComponent,
+  SearchResultsComponent,
+  SubNavBarComponent,
+  UnescapePipe,
+  ProfileModalComponent,
+  ProfileModalContentComponent
+} from './shared/shared';
 import { AppComponent } from './app.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SearchComponent,
     ProfileComponent,
     ProfileFullComponent,
@@ -29,7 +58,16 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SubNavBarComponent,
     MobileNavComponent,
-    UnescapePipe
+    UnescapePipe,
+    SharedNgContainerComponent,
+    FooterComponent,
+    NavBarComponent,
+    MobileNavComponent,
+    UserBubbleComponent,
+    HeaderComponent,
+    ProfileModalComponent,
+    ProfileModalContentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -84,8 +122,15 @@ import { AppComponent } from './app.component';
     ])
   ],
   providers: [
-  	RequestService
+    AuthService,
+    RequestService,
+    MaskRequestService,
+    HermesService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ProfileModalComponent,
+    ProfileModalContentComponent
+  ]
 })
 export class AppModule { }

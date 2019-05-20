@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedOn()" class="row">
-  <div id="edit-profile" class="col-md-6">
+  <div id="edit-profile" class="col-md-6" *ngIf="fullProfile">
     <h1 id="left-header-title" class="text-white">Profile Info</h1>
     <hr class="top-hr">
 
@@ -20,7 +20,7 @@
             <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && !(field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
             <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
           </div>
-          <div *ngIf="(field == 'department' || field == 'office' || field == 'office_hours' ) && (userStatus() == 'Faculty' || userStatus() == 'Staff')" class="text-white text-capitadivze">
+          <div *ngIf="(field == 'department' || field == 'office' || field == 'office_hours' ) && (userStatus == 'Faculty' || userStatus == 'Staff')" class="text-white text-capitadivze">
             <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && (field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
             <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
           </div>

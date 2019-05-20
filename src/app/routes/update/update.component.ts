@@ -3,13 +3,11 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-import { RequestService } from '../../RequestService/requests';
-import { ProfileModel } from '../../shared/profile.model';
+import { AuthService, RequestService, MaskRequestService } from '../../../shared-ng/services/services';
+import { User, ProfileFull } from '../../../shared-ng/interfaces/interfaces';
 import { FieldSections, SelectFields, SearchableFields } from '../../shared/fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../config';
 
@@ -25,16 +23,17 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../con
  * This is the component that handles a user updating their profile.
  * */
 export class UpdateComponent implements OnInit {
-  constructor(private requestService: RequestService, private router: Router) { }
+  constructor(private rs: RequestService, private as: AuthService, private mrs: MaskRequestService, private router: Router) {}
 
-  profile: ProfileModel = new ProfileModel("{}");
-  fullProfile: ProfileModel = new ProfileModel("{}");
+  profile: User;
+  fullProfile: ProfileFull;
   sections: string[][] = FieldSections;
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
   possiblePhotos: string[];
   searchYears: string[];
   justClicked: string;
+  userStatus: any;  // Student, Faculty, etc.
 
   /*
   * On initialization of this component, call the verify function to ensure that the user is logged in.
@@ -42,41 +41,42 @@ export class UpdateComponent implements OnInit {
   * This full profile is then set as fullProfile.
   * */
   ngOnInit() {
-    this.requestService.verify((data) => {
+    this.as.authenticateUser().subscribe((data) => {
       this.profile = data;
-      this.requestService.get("/profile/" + CURRENT_YEAR + "/" + this.profile.username, (data) => {
-        this.fullProfile = this.Decode(data);
+      this.mrs.readProfile(CURRENT_YEAR, this.profile.username).subscribe((prof) => {
+        this.fullProfile = this.Decode(prof);
         this.getPhotos();
-      }, undefined);
+      });
     });
+
+    this.getUserStatus();
   }
 
   // Typeahead major/minor functions
   searchMajors = (text$: Observable<string>) =>
-    text$.debounceTime(200).distinctUntilChanged().map(
+    text$.pipe(debounceTime(200), distinctUntilChanged(), map(
       term => term.length < 2 ? [] : this.searchables['majors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
   searchMinors = (text$: Observable<string>) =>
-    text$.debounceTime(200).distinctUntilChanged().map(
+    text$.pipe(debounceTime(200), distinctUntilChanged(), map(
       term => term.length < 2 ? [] : this.searchables['minors'].filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
 
   // Because the `requestService` is private it cannot be accessed by the
   // template. Hence the reason for this function. :(
   isLoggedOn() {
-    return this.requestService.isLoggedOn();
+    return this.as.isLoggedIn();
   }
 
   // This function gets the url's of all the possible photos for a user from the endpoint on the server.
   getPhotos(): any {
     this.possiblePhotos = [DEFAULT_PHOTO];
     this.justClicked = this.profile.photo;
-    this.requestService.get('/update/list_photos', (data: {photos: string[]}) => {
+
+    const photoObservable = this.mrs.listPhotos();
+    photoObservable.subscribe((data: any) => {
       this.possiblePhotos = this.possiblePhotos.concat(data.photos);
-    },
-    (err) => {
-      undefined
-    });
+    }, undefined);
   }
 
   // Function to change which picture is set for a user. For use in the html to select a picture.
@@ -112,16 +112,16 @@ export class UpdateComponent implements OnInit {
 
   // Lets a user upload their profile to the server.
   UploadProfile(): void {
-    this.requestService.postxwww(
-      "/update/" + this.fullProfile.username,
-      this.fullProfile,
-      (data) => {
-        this.router.navigate(['/profile',{username: this.fullProfile.username}]);
-      },
-      undefined);
+
+    this.mrs.updateProfile(this.fullProfile.username, this.fullProfile).subscribe((data) => {
+      this.router.navigate(['/profile',{username: this.fullProfile.username}]);
+    }, undefined);
   }
 
-  userStatus(){
-    return this.requestService.authUser.status;
+  getUserStatus() {
+    const authObserverable = this.as.authenticateUser();
+    authObserverable.subscribe(data => {
+      this.userStatus = data.status;
+    }, undefined);
   }
 }

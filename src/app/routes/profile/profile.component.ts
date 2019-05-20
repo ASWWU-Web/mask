@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import { RequestService } from '../../RequestService/requests';
+import { MaskRequestService } from '../../../shared-ng/services/services'
 
 import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/shared';
 import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
@@ -22,20 +22,23 @@ import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
 })
 
 export class ProfileComponent {
-    username: String;
-    year: String = CURRENT_YEAR;
+    username: string;
+    year: string = CURRENT_YEAR;
     profile: ProfileModel;
     private subscription: Subscription;
 
-    constructor(private requestService: RequestService, private activatedRoute: ActivatedRoute) {}
+    constructor(private mrs: MaskRequestService, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
-    this.subscription = this.activatedRoute.params.subscribe(
+      this.subscription = this.activatedRoute.params.subscribe(
       (param: any) => {
         // param name specified in the app.module.ts file.
         this.username = param['username'];
         this.year = param['year'] ? param['year']: CURRENT_YEAR;
-        this.requestService.get('/profile/' + this.year + '/' + this.username, (data) => this.profile = new ProfileModel(data), undefined);
+        const profileObservable = this.mrs.readProfile(this.year, this.username);
+        profileObservable.subscribe((data) => {
+          this.profile = new ProfileModel(data);
+        }, undefined);
       });
     }
 

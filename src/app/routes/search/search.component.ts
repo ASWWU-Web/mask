@@ -1,25 +1,17 @@
-import { Subscription } from 'rxjs';
+import { Subscription ,  Observable } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CURRENT_YEAR } from '../../config';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
-import { RequestService } from '../../RequestService/request.service';
-import { SearchResultsComponent } from '../../shared/shared';
+import { MaskRequestService } from '../../../shared-ng/services/services'
 import { SearchableFields } from '../../shared/fields';
+import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
 
 @Component({
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css'],
-  providers: [ ],
 })
-
 export class SearchComponent implements OnInit {
   typedQuery: string = '';
   searchQuery: string;
@@ -27,7 +19,7 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private rs: RequestService, private location: Location) {}
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location) {}
 
   ngOnInit() {
     //Get the Params from the URL.
@@ -37,11 +29,12 @@ export class SearchComponent implements OnInit {
         this.runSearch();
       }
     });
-    this.rs.get('/search/all' , (data) => {
-      this.allProfiles = data.results;
-      this.setupTypeAhead();
-    }, undefined)
-
+    const profileObservable = this.mrs.listProfile();
+    profileObservable.subscribe(
+      (data: Profile[]) => {
+        this.allProfiles = data;
+        this.setupTypeAhead();
+      }, (err) => {});
   }
 
   //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
@@ -56,9 +49,9 @@ export class SearchComponent implements OnInit {
 
   // Calculate the possible typeaheads
   typeaheadSearch = (text$: Observable<string>) =>
-    text$.distinctUntilChanged().map(
+    text$.pipe(distinctUntilChanged(), map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    );
+    ));
 
   // Runs the search
   runSearch(item=null) {
@@ -77,6 +70,7 @@ export class SearchComponent implements OnInit {
   setupTypeAhead() {
     this.typeaheadResults.push('');
     // Add all profiles to typeahead options
+
     for(let profile of this.allProfiles) {
       this.typeaheadResults.push(profile['full_name']);
     }

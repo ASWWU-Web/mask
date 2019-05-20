@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable , Subscription} from 'rxjs';
 
-import { RequestService } from '../../RequestService/request.service';
+import { MaskRequestService } from '../../../shared-ng/services/services';
 import { ProfileSmComponent } from '../shared';
 import { CURRENT_YEAR } from '../../config';
-import {Subscription} from "rxjs/Subscription";
+import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: "search-results",
@@ -17,17 +17,17 @@ import {Subscription} from "rxjs/Subscription";
 
 export class SearchResultsComponent {
   @Input() query: string;
-  @Input('year') year: String = undefined;
+  @Input('year') year: string = undefined;
   @Input() noResultsPrompt: string;
   @Input() noResultsJust: string = "center";
 
-  results: any[] = [];
+  results: Profile[] = [];
   shownResults: any[] = [];
   shown: number = 0;
   sub: Subscription = null;
   searching: boolean = false;
 
-  constructor (private rs: RequestService) {}
+  constructor (private mrs: MaskRequestService) {}
 
   ngOnChanges() {
     this.shownResults = [];
@@ -50,29 +50,34 @@ export class SearchResultsComponent {
     }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
-            p1.views = 0;
-          if (p2.views == "None")
-            p2.views = 0;
-          return p2.views - p1.views;
+      const maskObservable = this.mrs.listProfile(CURRENT_YEAR, query);
+      maskObservable.subscribe((data: Profile[]) => {
+        this.results = data.sort((p1,p2) => {
+          let views1: number = 0, views2: number = 0;
+          if (typeof p1.views !== 'string')
+            views1 = p1.views;
+          if (typeof p2.views !== 'string')
+            views2 = p2.views;
+
+          return views2 - views1;
         });
         this.showMore();
-      }, undefined)
-
+      }, undefined);
     }
     else {
-      this.rs.get('/search/'+ this.year + "/" + query, (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
-            p1.views = 0;
-          if (p2.views == "None")
-            p2.views = 0;
-          return p2.views - p1.views;
-        })
+      const maskObservable = this.mrs.listProfile(this.year, query);
+      maskObservable.subscribe((data: Profile[]) => {
+        this.results = data.sort((p1,p2) => {
+          let views1: number = 0, views2: number = 0;
+          if (typeof p1.views !== 'string')
+            views1 = p1.views;
+          if (typeof p2.views !== 'string')
+            views2 = p2.views;
+
+            return views2 - views1;
+        });
         this.showMore();
-      }, undefined)
+      }, undefined);
     }
   }
 
