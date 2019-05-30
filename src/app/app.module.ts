@@ -10,7 +10,6 @@ import {
   SharedNgContainerComponent,
   FooterComponent,
   NavBarComponent,
-  MobileNavComponent,
   UserBubbleComponent,
   HeaderComponent
 } from '../shared-ng/components/components';
@@ -34,7 +33,6 @@ import {
   ProfileFullComponent,
   ProfileSmComponent,
   SearchResultsComponent,
-  SubNavBarComponent,
   UnescapePipe,
   ProfileModalComponent,
   ProfileModalContentComponent
@@ -56,13 +54,10 @@ import { AppComponent } from './app.component';
     SuperSearchComponent,
     NavBarComponent,
     UserBubbleComponent,
-    SubNavBarComponent,
-    MobileNavComponent,
     UnescapePipe,
     SharedNgContainerComponent,
     FooterComponent,
     NavBarComponent,
-    MobileNavComponent,
     UserBubbleComponent,
     HeaderComponent,
     ProfileModalComponent,
