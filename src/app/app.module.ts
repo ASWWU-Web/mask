@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 // shared-ng components
 import {
   SharedNgContainerComponent,
@@ -12,7 +13,8 @@ import {
   NavBarComponent,
   MobileNavComponent,
   UserBubbleComponent,
-  HeaderComponent
+  HeaderComponent,
+  SearchBarComponent
 } from '../shared-ng/components/components';
 import {
   AuthService,
@@ -66,8 +68,8 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     HeaderComponent,
     ProfileModalComponent,
-    ProfileModalContentComponent
-
+    ProfileModalContentComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -133,4 +135,4 @@ import { AppComponent } from './app.component';
     ProfileModalContentComponent
   ]
 })
-export class AppModule { }
+export class AppModule {}

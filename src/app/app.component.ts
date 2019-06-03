@@ -25,7 +25,7 @@ export class AppComponent {
         else if(this.loc.path().search('update') != -1) this.fade = 1;
         else if(this.loc.path().search('random') != -1) this.fade = 1;
     });
-    this.hermes.sendHeaderTitle('Mask');
+    this.hermes.sendHeaderTitle('The Mask');
   }
 
   scrollToTop() {

@@ -3,7 +3,7 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MaskRequestService } from '../../../shared-ng/services/services'
+import { MaskRequestService, HermesService } from '../../../shared-ng/services/services'
 import { SearchableFields } from '../../shared/fields';
 import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
@@ -19,7 +19,10 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location) {}
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private hs: HermesService, private location: Location) {
+    this.hs.sendSearchBar(true);
+    this.hs.sendPlaceholder('search the mask...');
+  }
 
   ngOnInit() {
     //Get the Params from the URL.
@@ -35,6 +38,21 @@ export class SearchComponent implements OnInit {
         this.allProfiles = data;
         this.setupTypeAhead();
       }, (err) => {});
+
+    const searchTextObservable = this.hs.getSearchText();
+    searchTextObservable.subscribe((data: string) => {
+      this.typedQuery = data;
+      this.runSearch();
+    }, (err)=>{});
+  }
+
+  runSearch() {
+    if (!this.typedQuery) {
+      this.location.replaceState('');
+    } else {
+      this.location.replaceState("/search?query=" + this.typedQuery);
+    }
+    this.searchQuery = this.typedQuery;
   }
 
   //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
@@ -53,14 +71,14 @@ export class SearchComponent implements OnInit {
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
     ));
 
-  // Runs the search
-  runSearch(item=null) {
-    if (item != null) {
-      this.typedQuery = item.item;
-    }
-    this.searchQuery = this.typedQuery;
-    this.location.replaceState("/search?query=" + this.typedQuery);
-  }
+  // // Runs the search
+  // runSearch(item=null) {
+  //   if (item != null) {
+  //     this.typedQuery = item.item;
+  //   }
+  //   this.searchQuery = this.typedQuery;
+  //   this.location.replaceState("/search?query=" + this.typedQuery);
+  // }
 
   // Sets the first result of typeahead to the typed text
   addFirstResult() {
