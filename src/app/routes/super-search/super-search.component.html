@@ -1,63 +1,58 @@
 <div class="container-fluid">
-
-    <div id="search-area" class="parallax-window" style="background-image: url('https://static.wixstatic.com/media/de317edf9480039c6c4d425f78b91e1c.png/v1/crop/x_0,y_0,w_330,h_331/de317edf9480039c6c4d425f78b91e1c.png'); background-repeat: repeat;background-size:initial; background-color:#99d7ea;">
-        <div class="align-items-center search-criteria" style="margin-left:auto;margin-right:auto;">
-            <div class="title">
-                <h1 class="text-white text-uppercase giant-text mx-auto">Super Search</h1>
-            </div>
+    <div class="align-items-center search-criteria" style="margin-left:auto;margin-right:auto;">
+        <br>
+        <div class="align-items-center">
             <br>
-            <div class="align-items-center">
-                <br>
-                <div class="form-group row white-box" *ngFor="let pair of criteria; let i = index;" id="search">
-                    <!-- FIELDS SELECTOR -->
-                    <div class="dropdown-container col col-md-3">
-                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
-                        <select class="form-control dropdown" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
-                            <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
-                        </select>
-                    </div>
-
-                    <!-- SEARCH BOX -->
-                    <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control mask-search-query super-search-box col white-box white-box-left-right" type="text" placeholder="super search box...">
-
-                    <div class="dropdown-container col white-box white-box-left-right" *ngIf="selectables.hasOwnProperty(criteria[i][0])">
-                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
-                        <select class="dropdown col" [(ngModel)]="criteria[i][1]">
-                            <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
-                        </select>
-                    </div>
-
-                    <div class="col white-box white-box-left-right" *ngIf="searchables.hasOwnProperty(criteria[i][0])">
-                        <input class="form-control mask-search-query super-search-box " style="border-style:none;height:100%" [attr.list]="criteria[i][0]" [(ngModel)]="criteria[i][1]">
-                        <datalist id="{{criteria[i][0]}}">
-                            <option *ngFor="let options of searchables[criteria[i][0]]" [value]="options">{{options}}</option>
-                        </datalist>
-                    </div>
-                    <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
-
-                    <!-- REMOVE BUTTON -->
-                    <button class="btn super-search-box mask-search-query remove-button" (click)="removeField(i)"><span class="fas fa-times"></span></button>
+            <div class="form-group row white-box" *ngFor="let pair of criteria; let i = index;" id="search">
+                <!-- FIELDS SELECTOR -->
+                <div class="dropdown-container col col-md-3">
+                    <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
+                    <select class="form-control dropdown" id="field{{i}}" [(ngModel)]='criteria[i][0]'>
+                        <option *ngFor="let field of fieldsInOrder" value="{{field}}">{{field.split('_').join(' ')}}</option>
+                    </select>
                 </div>
-                <!-- YEAR SELECTOR -->
-                <div class="text-center">
-                    <span class="fieldSelector year-selector" id="field0">Year :</span>
-                        <div class="" style="display:inline-block;position:relative;color:white;">
-                            <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
-                            <select class="dropdown" style="width:6.5rem;padding:0px" id='entry0' [(ngModel)]="year">
-                                <option value="1819" selected="selected">2018-2019</option>
-                                <option value="1718">2017-2018</option>
-                                <option value="1617">2016-2017</option>
-                                <option value="1516">2015-2016</option>
-                                <option value="1415">2014-2015</option>
-                                <option value="1314">2013-2014</option>
-                                <option value="1213">2012-2013</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-success btn-sm" (click)="criteria.push(['', ''])">Add search field</button>
-                    </div>
-                <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="updateQuery()">Search!</button>
+
+                <!-- SEARCH BOX -->
+                <input *ngIf="!searchables.hasOwnProperty(criteria[i][0]) && !selectables.hasOwnProperty(criteria[i][0])" id="entry{{i}}" [(ngModel)]='criteria[i][1]' class="form-control mask-search-query super-search-box col white-box white-box-left-right" type="text" placeholder="super search box...">
+
+                <div class="dropdown-container col white-box white-box-left-right" *ngIf="selectables.hasOwnProperty(criteria[i][0])">
+                    <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
+                    <select class="dropdown col" [(ngModel)]="criteria[i][1]">
+                        <option *ngFor="let options of selectables[criteria[i][0]]" [value]="criteria[i][0] == 'privacy' ? selectables[criteria[i][0]].indexOf(options) : options">{{options}}</option>
+                    </select>
+                </div>
+
+                <div class="col white-box white-box-left-right" *ngIf="searchables.hasOwnProperty(criteria[i][0])">
+                    <input class="form-control mask-search-query super-search-box " style="border-style:none;height:100%" [attr.list]="criteria[i][0]" [(ngModel)]="criteria[i][1]">
+                    <datalist id="{{criteria[i][0]}}">
+                        <option *ngFor="let options of searchables[criteria[i][0]]" [value]="options">{{options}}</option>
+                    </datalist>
+                </div>
+                <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
+
+                <!-- REMOVE BUTTON -->
+                <button class="btn super-search-box mask-search-query remove-button" (click)="removeField(i)"><span class="fas fa-times"></span></button>
             </div>
+            <!-- YEAR SELECTOR -->
+            <div class="text-center">
+                <span class="fieldSelector year-selector" id="field0">Year: </span>
+                    <div class="" style="display:inline-block;position:relative;color:black;">
+                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
+                        <select class="dropdown" style="width:6.5rem;padding:0px" id='entry0' [(ngModel)]="year">
+                            <option value="1819" selected="selected">2018-2019</option>
+                            <option value="1718">2017-2018</option>
+                            <option value="1617">2016-2017</option>
+                            <option value="1516">2015-2016</option>
+                            <option value="1415">2014-2015</option>
+                            <option value="1314">2013-2014</option>
+                            <option value="1213">2012-2013</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success btn-sm" (click)="criteria.push(['', ''])">Add search field</button>
+                </div>
+            <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="updateQuery()">Search!</button>
         </div>
     </div>
+    <hr>
     <search-results [query]='serverQuery' [year]='year'></search-results>
 </div>

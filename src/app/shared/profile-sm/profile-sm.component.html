@@ -2,7 +2,7 @@
   <div class="circle">
     <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
   </div>
-  <h4 class=" text-white">{{searchResult.full_name | unescape}}</h4>
+  <h4 class=" text-black">{{searchResult.full_name | unescape}}</h4>
 </a>
 
 <a *ngIf="this.year != this.current_year" (click)="ballotModal.open(searchResult.username, (this.year) ? this.year: this.current_year)">
