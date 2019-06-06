@@ -8,3 +8,7 @@
 .top-margin {
     margin-top: 40px;
 }
+
+.profile-bubble:hover {
+  cursor: pointer;
+}
