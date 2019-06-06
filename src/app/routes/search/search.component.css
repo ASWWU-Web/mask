@@ -1,7 +1,3 @@
-#mask-search-query:focus {
-  background-color: white;
-  color: grey;
-}
 #mask-search-button {
   border-left: 0px;
   transform: translateX(-2px);
@@ -9,7 +5,7 @@
   padding-right: 15px;
 }
 #mask-search-button:hover {
-  background-color: white;
+  background-color: black;
   color: grey;
 }
 
@@ -36,28 +32,28 @@
 
 .search-area-element {
   font-family: 'Raleway', sans-serif;
-  color: white;
+  color: black;
   transition: color .2s, background-color .2s;
   font-weight: bold;
   background-color: transparent;
   padding-top: 12px;
   padding-bottom: 12px;
   max-width: 400px;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 0px;
-  box-shadow: inset 0px 0px 0px 2px white;
+  box-shadow: inset 0px 0px 0px 2px black;
 }
 .mask-search-query::-webkit-input-placeholder {
-  color: white;
+  color: black;
 }
 .form-control::placeholder-shown {
-  color: white;
+  color: black;
 }
 .form-control::placeholder {
-  color: white;
+  color: black;
 }
 .form-control::moz-placeholder {
-  color: white;
+  color: black;
 }
 /* add this for other browsers */
 
