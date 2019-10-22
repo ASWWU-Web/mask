@@ -8,7 +8,8 @@ export const DEFAULT_PHOTO = 'images/default_mask/default.jpg';
 
 // YEARS
 export const CURRENT_YEAR = '1920';
-export const ARCHIVE_YEARS = ['1819','1718','1617','1516','1415','1314','1213','1112','1011','0910','0809','0708','0607'];
+export const ARCHIVE_YEARS = ['1819', '1718', '1617', '1516', '1415',
+  '1314', '1213', '1112', '1011', '0910', '0809', '0708', '0607'];
 
 // AUTH
 export const AUTH_URI = 'https://saml.aswwu.com/';
