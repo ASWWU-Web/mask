@@ -44,23 +44,21 @@ export class SearchResultsComponent {
   update() {
     // Set searching to true
     this.searching = true;
-    //Query the server and sort the results.
-    if(this.sub != null) {
+    // Query the server and sort the results.
+    if (this.sub != null) {
       this.sub.unsubscribe();
     }
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
-      this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
+      this.sub = this.rs.getWithSub('/search/' + CURRENT_YEAR + "/" + query , (data) => {
         this.results = data.results;
         this.showMore();
-      }, undefined)
-
-    }
-    else {
-      this.rs.get('/search/'+ this.year + "/" + query, (data) => {
+      }, undefined);
+    } else {
+      this.rs.get('/search/' + this.year + "/" + query, (data) => {
         this.results = data.results;
         this.showMore();
-      }, undefined)
+      }, undefined);
     }
   }
 
