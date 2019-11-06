@@ -51,26 +51,14 @@ export class SearchResultsComponent {
     var query = this.query || "";
     if(this.year == undefined || this.year == CURRENT_YEAR) {
       this.sub = this.rs.getWithSub('/search/'+ CURRENT_YEAR + "/" + query , (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
-            p1.views = 0;
-          if (p2.views == "None")
-            p2.views = 0;
-          return p2.views - p1.views;
-        });
+        this.results = data.results;
         this.showMore();
       }, undefined)
 
     }
     else {
       this.rs.get('/search/'+ this.year + "/" + query, (data) => {
-        this.results = data.results.sort((p1,p2) => {
-          if (p1.views == "None")
-            p1.views = 0;
-          if (p2.views == "None")
-            p2.views = 0;
-          return p2.views - p1.views;
-        })
+        this.results = data.results;
         this.showMore();
       }, undefined)
     }
