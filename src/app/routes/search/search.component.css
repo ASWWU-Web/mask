@@ -1,12 +1,10 @@
 #mask-search-button {
   border-left: 0px;
   transform: translateX(-2px);
-  padding-left: 15px;
-  padding-right: 15px;
 }
 #mask-search-button:hover {
-  background-color: black;
-  color: grey;
+  background-color: white;
+  color: black;
 }
 
 /* for mobile */
@@ -36,28 +34,65 @@ body {
 
 .search-area-element {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: white;
   transition: color .2s, background-color .2s;
   font-weight: bold;
   background-color: transparent;
+  border: 1px solid white;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 0px 2px white;
+}
+
+#mask-search-query {
   padding-top: 12px;
   padding-bottom: 12px;
-  max-width: 400px;
-  border: 1px solid black;
-  border-radius: 0px;
-  box-shadow: inset 0px 0px 0px 2px black;
+  max-width: 380px;
+}
+
+#mask-search-button {
+  max-width: 40px;
+}
+
+.fa-search {
+  margin: auto;
+}
+
+/* For mobile */
+@media only screen and (max-width: 500px) {
+  #mask-search-query {
+    max-width: 300px;
+  }
+
+  #mask-search-button {
+    max-width: 60px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #mask-search-query {
+    max-width: 250px;
+  }
+  
+}
+
+.search-area-element:focus {
+  background-color: white;
+  color: black;
+}
+.form-control {
+  height: 
 }
 .mask-search-query::-webkit-input-placeholder {
-  color: black;
+  color: white;
 }
 .form-control::placeholder-shown {
-  color: black;
+  color: white;
 }
 .form-control::placeholder {
-  color: black;
+  color: white;
 }
 .form-control::moz-placeholder {
-  color: black;
+  color: white;
 }
 /* add this for other browsers */
 
