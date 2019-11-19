@@ -44,8 +44,8 @@ export class SearchResultsComponent {
   update() {
     // Set searching to true
     this.searching = true;
-    //Query the server and sort the results.
-    if(this.sub != null) {
+    // Query the server and sort the results.
+    if (this.sub != null) {
       this.sub.unsubscribe();
     }
     var query = this.query || "";
