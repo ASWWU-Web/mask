@@ -5,6 +5,7 @@ import { ProfileModel } from '../profile.model';
 import { MaskRequestService } from '../../../shared-ng/services/services'
 import { ActivatedRoute} from '@angular/router';
 import { PlatformLocation } from '@angular/common';
+import { Router } from '@angular/router';
 import { ProfileFullComponent } from '../profile-full/profile-full.component';
 
 @Component({
@@ -18,13 +19,24 @@ export class ProfileModalContentComponent implements OnInit {
   @Input() username: string;
   @Input() year: string;
   profile: ProfileModel;
+  url: string;
+  display_url: string;
 
-  constructor(public activeModal: NgbActiveModal, private mrs: MaskRequestService, private activatedRoute: ActivatedRoute) { }
+  constructor(public activeModal: NgbActiveModal, private mrs: MaskRequestService, private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.year = this.year ? this.year : CURRENT_YEAR;
-    const url = '/profile/' + this.year + '/' + this.username;
-    const display_url = '/profile/' + this.username + '/' + this.year;  // URL to display
+
+    // distinguish between development and production
+    // TODO: this needs to be updated once mask repo is merged into frontend repo
+    if (this.router.url === '/') {
+      this.url = '/profile/' + this.year + '/' + this.username;
+      this.display_url = '/profile/' + this.username + '/' + this.year; // URL to display
+    } else {
+      this.url = '/mask' + '/profile/' + this.year + '/' + this.username;
+      this.display_url = '/mask' + '/profile/' + this.username + '/' + this.year;  // URL to display
+    }
 
     const maskObservable = this.mrs.readProfile(this.year, this.username);
     maskObservable.subscribe((data) => {
@@ -32,7 +44,7 @@ export class ProfileModalContentComponent implements OnInit {
     }, undefined);
     // this.rs.get(url, (data) => this.profile = new ProfileModel(data), undefined);
     const stateObj = { hello: 'there'};
-    history.pushState(stateObj, 'Profile View', display_url);
+    history.pushState(stateObj, 'Profile View', this.display_url);
   }
 }
 
