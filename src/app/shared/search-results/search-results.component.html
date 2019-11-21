@@ -7,7 +7,7 @@
   <!-- Searching... -->
   <div *ngIf="searching" style="padding-bottom:50px;" class="row">
     <div class="col d-flex justify-content-center">
-      <p id="searching-text" style="font-size: 150%">Searching...</p>
+      <p id="searching-text" style="font-size: 150%; color: white;">Searching...</p>
     </div>
   </div>
   <!-- Not searching -->
@@ -16,7 +16,7 @@
       <button (click)="showMore()" class="btn btn-primary">Show More</button>
     </div>
     <div *ngIf="results.length == 0 && noResultsPrompt == undefined" class="col d-flex justify-content-center">
-      <p class="text-black no-results-text" style="font-size: 100%">No results found... </p>
+      <p class="text-black no-results-text" style="font-size: 100%; color: white;">No results found... </p>
       <p class="no-results-text">
         <a [routerLink]="['/super-search/']">Super Search?</a>
       </p>

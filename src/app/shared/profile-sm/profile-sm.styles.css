@@ -9,7 +9,7 @@
 }
 a {
   /* TODO: Change to white when background is addded */
-  color: grey;
+  color: white !important;
   text-align: center;
   text-decoration: none !important;
 }

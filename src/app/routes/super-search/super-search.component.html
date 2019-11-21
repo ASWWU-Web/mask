@@ -35,24 +35,23 @@
             </div>
             <!-- YEAR SELECTOR -->
             <div class="text-center">
-                <span class="fieldSelector year-selector" id="field0">Year :</span>
-                    <div class="" style="display:inline-block;position:relative;color:white;">
-                        <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
-                        <select class="dropdown" style="width:6.5rem;padding:0px" id='entry0' [(ngModel)]="year">
-                            <option value="1920" selected="selected">2019-2020</option>
-                            <option value="1819">2018-2019</option>
-                            <option value="1718">2017-2018</option>
-                            <option value="1617">2016-2017</option>
-                            <option value="1516">2015-2016</option>
-                            <option value="1415">2014-2015</option>
-                            <option value="1314">2013-2014</option>
-                            <option value="1213">2012-2013</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-success btn-sm" (click)="criteria.push(['', ''])">Add search field</button>
-                <!-- </div> -->
-                <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="updateQuery()">Search!</button>
+            <span class="fieldSelector year-selector" id="field0">Year: </span>
+                <div class="" style="display:inline-block;position:relative;color:white;">
+                    <span class="fas fa-caret-down" style="position:absolute;right:5px;height:100%;"></span>
+                    <select class="dropdown" style="width:6.5rem;padding:0px" id='entry0' [(ngModel)]="year">
+                        <option value="1920" selected="selected">2019-2020</option>
+                        <option value="1819">2018-2019</option>
+                        <option value="1718">2017-2018</option>
+                        <option value="1617">2016-2017</option>
+                        <option value="1516">2015-2016</option>
+                        <option value="1415">2014-2015</option>
+                        <option value="1314">2013-2014</option>
+                        <option value="1213">2012-2013</option>
+                    </select>
+                </div>
+                <button class="btn btn-success btn-sm" (click)="criteria.push(['', ''])">Add search field</button>
             </div>
+            <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="updateQuery()">Search!</button>
         </div>
     </div>
     <hr>
