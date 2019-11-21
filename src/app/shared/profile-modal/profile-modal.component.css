@@ -6,3 +6,7 @@
       max-height: calc(90%);
   }
 }
+
+.modal-backdrop {
+  background-color: rgb(20, 20, 20);
+}

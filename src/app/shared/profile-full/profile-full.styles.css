@@ -13,11 +13,15 @@
 
 .info a {
 	/* TODO: Change when the background is added */
-	color: black;
+	color: white;
 	text-decoration: none;
 	border-bottom: 1px solid transparent;
 }
 
 .info a:hover {
 	border-bottom-color: black;
+}
+
+h1 {
+	color: white;
 }
