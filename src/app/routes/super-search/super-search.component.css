@@ -10,11 +10,11 @@
 }
 
 .white-box {
-  color: black;
+  color: white;
   border-style: solid;
   border-radius: 0;
   border-width: 3px;
-  border-color: black;
+  border-color: white;
   background-color: transparent;
   padding: 0px;
 }
@@ -26,7 +26,7 @@
 
 .mask-search-query {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: white;
   transition: color .2s, background-color .2s;
   font-weight: bold;
   background-color: transparent;
@@ -36,19 +36,19 @@
 }
 
 .mask-search-query::-webkit-input-placeholder {
-  color: black;
+  color: white;
 }
 
 .form-control::placeholder-shown {
-  color: black;
+  color: white;
 }
 
 .form-control::placeholder {
-  color: black;
+  color: white;
 }
 
 .form-control::moz-placeholder {
-  color: black;
+  color: white;
 }
 
 /* add this for other browsers */
@@ -128,10 +128,10 @@
 
 .year-selector {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: white;
   border-radius: 0;
   border-width: 3px;
-  border-color: black;
+  border-color: white;
   transition: color .2s, background-color .2s;
   font-weight: bold;
   background-color: transparent;
@@ -144,7 +144,7 @@
   background-color: transparent;
   border-style: none;
   height: 100% !important;
-  color: black;
+  color: white;
   font-family: 'Raleway', sans-serif;
   transition: color .2s, background-color .2s;
   font-weight: bold;
@@ -158,9 +158,13 @@
   padding: 0px;
   margin: 0px;
   /* border-style: none; */
-  color: black;
+  color: white;
 }
 
 option {
-  color:black;
+  color:white;
+}
+
+button {
+  border-radius: 1px;
 }
