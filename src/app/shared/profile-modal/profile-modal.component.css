@@ -10,3 +10,8 @@
 .modal-backdrop {
   background-color: rgb(20, 20, 20);
 }
+
+.modal-body {
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+}
