@@ -1,6 +1,7 @@
 #mask-search-button {
   border-left: 0px;
   transform: translateX(-2px);
+  width: 51.7px;
 }
 #mask-search-button:hover {
   background-color: white;
