@@ -3,7 +3,9 @@
     <br />
     <div class="row justify-content-center">
       <input id="mask-search-query" class="search-area-element col form-control" [(ngModel)]='typedQuery' (ngModelChange)="addFirstResult()" (selectItem)="runSearch($event)" [ngbTypeahead]="typeaheadSearch" [resultFormatter]="typeaheadFormatter" type="text" placeholder="Find the one...">
-      <button id="mask-search-button" class="search-area-element col-1 form-control" (click)="runSearch()"><i class="fas fa-search"></i></button>
+      <div class="input-group-append">
+        <button id="mask-search-button" class="search-area-element col-1 form-control" (click)="runSearch()"><i class="fas fa-search"></i></button>
+      </div>
     </div>
   </div>
   <div>
