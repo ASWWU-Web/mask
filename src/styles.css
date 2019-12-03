@@ -8,4 +8,11 @@
 
 body {
     background-color: black;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+html {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
 }
