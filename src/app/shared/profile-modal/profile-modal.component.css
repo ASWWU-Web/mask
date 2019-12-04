@@ -15,3 +15,22 @@
   max-height: calc(100vh - 130px);
   overflow-y: auto;
 }
+
+::-webkit-scrollbar {
+  background-color: black; /* removes scrollbar space*/
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+/* removes horizontal line */
+.modal-header {
+  border-bottom: 0 none;
+  background-color: #0a0a0a;
+}
+
+.modal-footer {
+  border-top: 0 none;
+  background-color: #0a0a0a;
+}
