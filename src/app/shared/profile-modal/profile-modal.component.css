@@ -10,3 +10,19 @@
 .modal-backdrop {
   background-color: rgb(20, 20, 20);
 }
+
+.modal-dialog {
+  margin-top: 0;
+}
+
+.modal-body {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+/* removes horizontal line */
+.modal-header, .modal-footer {
+  border-bottom: 0 none;
+  border-top: 0 none;
+  background-color: #262626;
+}
