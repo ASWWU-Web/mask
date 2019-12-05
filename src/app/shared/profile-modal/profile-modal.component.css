@@ -11,26 +11,18 @@
   background-color: rgb(20, 20, 20);
 }
 
+.modal-dialog {
+  margin-top: 0;
+}
+
 .modal-body {
-  max-height: calc(100vh - 130px);
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
 }
 
-::-webkit-scrollbar {
-  background-color: black; /* removes scrollbar space*/
-}
-
-::-webkit-scrollbar-thumb {
-  background: gray;
-}
-
 /* removes horizontal line */
-.modal-header {
+.modal-header, .modal-footer {
   border-bottom: 0 none;
-  background-color: #0a0a0a;
-}
-
-.modal-footer {
   border-top: 0 none;
-  background-color: #0a0a0a;
+  background-color: #262626;
 }
